@@ -14,9 +14,13 @@ class CreateSellerTable extends Migration
     {
         Schema::create('exp_seller', function (Blueprint $table) {
             $table->increments('id');
+            // 代理货源
             $table->string('forward');
+            // 销售人
             $table->string('seller');
+            // 备注
             $table->string('remark');
+
             $table->timestamps();
         });
     }
