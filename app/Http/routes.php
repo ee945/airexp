@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 // 分单列表
-Route::get('hawb', 'HawbController@list');
+Route::get('hawb', 'HawbController@lists');
 // 分单信息（查看/修改）
-Route::get('hawb/show', 'HawbController@show');
+Route::get('hawb/show/{hawb}', 'HawbController@show');
 // 分单打印
 Route::get('hawb/print', 'HawbController@print');
 // 分单输入（输入/提交）
@@ -30,7 +30,7 @@ Route::post('hawb/edit', 'HawbController@edit');
 Route::post('hawb/del', 'HawbController@del');
 
 // 总单列表
-Route::get('mawb', 'MawbController@list');
+Route::get('mawb', 'MawbController@lists');
 // 总单信息（查看/修改）
 Route::get('mawb/show', 'MawbController@show');
 // 总单打印
@@ -58,7 +58,7 @@ Route::get('report/month', 'ReportController@month');
 Route::get('report/forward', 'ReportController@forward');
 
 // 客户列表
-Route::get('client', 'ClientController@list');
+Route::get('client', 'ClientController@lists');
 // 客户添加
 Route::get('client/add', 'ClientController@add');
 // 客户修改
@@ -67,7 +67,7 @@ Route::post('client/edit', 'ClientController@edit');
 Route::post('client/del', 'ClientController@del');
 
 // 地址列表
-Route::get('address', 'AddrController@list');
+Route::get('address', 'AddrController@lists');
 // 地址添加
 Route::get('address/add', 'AddrController@add');
 // 地址修改
@@ -76,7 +76,7 @@ Route::post('address/edit', 'AddrController@edit');
 Route::post('address/del', 'AddrController@del');
 
 // 目的港列表
-Route::get('port', 'PortController@list');
+Route::get('port', 'PortController@lists');
 // 目的港添加
 Route::get('port/add', 'PortController@add');
 // 目的港修改
@@ -85,7 +85,7 @@ Route::post('port/edit', 'PortController@edit');
 Route::post('port/del', 'PortController@del');
 
 // 用户列表
-Route::get('user', 'UserController@list');
+Route::get('user', 'UserController@lists');
 // 用户添加
 Route::get('user/add', 'UserController@add');
 // 用户修改
