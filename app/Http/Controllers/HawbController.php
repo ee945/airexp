@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
-use Illuminate\Support\Facades\DB;
 use App\Hawb;
 
 class HawbController extends Controller
@@ -14,8 +13,8 @@ class HawbController extends Controller
 	public function lists()
 	{
 		# code...
-		$hawbs = DB::table('exp_hawb')->orderBy('fltdate','desc')->orderBy('regtime','desc')->take(10)->get();
-		dd($hawbs);
+        $hawbs = Hawb::orderBy('fltdate','desc')->orderBy('regtime','desc')->paginate(20);
+		return view("test",["hawbs" => $hawbs]);
 	}
     //
     public function show($hawb)
