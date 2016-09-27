@@ -11,4 +11,10 @@ use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 class Controller extends BaseController
 {
     use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
+
+    public function test()
+    {
+        # code...
+        return view(theme("theme"),["title" => "test title"]);
+    }
 }

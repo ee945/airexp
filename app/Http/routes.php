@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('test', 'Controller@test');
 // 分单列表
 Route::get('hawb/list', 'HawbController@lists');
 // 分单信息（查看/修改）
