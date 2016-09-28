@@ -3,8 +3,72 @@
 @section('container')
     <div class="container theme-showcase" role="main">
       <div class="row">
+        <div class="col-md-11">
+          {!! Form::open() !!}
+          <table class="table table-condensed" style="margin-bottom: 2px;">
+            <tr>
+              <td>
+                {!! Form::label('hawb', '分单号: ') !!}
+                {!! Form::text('hawb',null,['size'=>'12']) !!}
+              </td>
+              <td>
+                {!! Form::label('dest', '目的港: ') !!}
+                {!! Form::text('dest',null,['size'=>'4']) !!}
+              </td>
+              <td>
+                {!! Form::label('fltno', '航班号: ') !!}
+                {!! Form::text('fltno',null,['size'=>'5']) !!}
+              </td>
+              <td>
+                {!! Form::label('forward', '货源: ') !!}
+                {!! Form::text('forward',null,['size'=>'4']) !!}
+              </td>
+              <td>
+                {!! Form::label('factory', '生产单位: ') !!}
+                {!! Form::text('factory',null,['size'=>'8']) !!}
+              </td>
+              <td>
+                {!! Form::label('paymt', '付费方式: ') !!}
+                {!! Form::text('paymt',null,['size'=>'4']) !!}
+              </td>
+              <td>{!! Form::submit('查询') !!}</td>
+            </tr>
+            <tr>
+              <td>
+                {!! Form::label('mawb', '总单号: ') !!}
+                {!! Form::text('mawb',null,['size'=>'12']) !!}
+              </td>
+              <td>
+                {!! Form::label('carrier', '承运人: ') !!}
+                {!! Form::text('carrier',null,['size'=>'4']) !!}
+              </td>
+              <td>
+                {!! Form::label('consignee', '收货人: ') !!}
+                {!! Form::text('consignee',null,['size'=>'5']) !!}
+              </td>
+              <td>
+                {!! Form::label('seller', '销售: ') !!}
+                {!! Form::text('seller',null,['size'=>'4']) !!}
+              </td>
+              <td>
+                {!! Form::label('fltdate', '航班日期: ') !!}
+                {!! Form::text('fltstart',null,['size'=>'8']) !!}
+                -
+                {!! Form::text('fltend',null,['size'=>'8']) !!}
+              </td>
+              <td>
+                {!! Form::label('perpage', '每页显示: ') !!}
+                {!! Form::text('perpage',null,['size'=>'4']) !!}
+              </td>
+              <td>{!! Form::reset('重置') !!}</td>
+            </tr>
+          </table>
+          {!! Form::close() !!}
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-12">
-          <table class="table table-striped table-hover table-bordered">
+          <table class="table table-striped table-hover table-bordered table-condensed" style="margin-bottom: 0;">
             <thead>
               <tr>
                 <th class="text-center">分运单号</th>
@@ -21,7 +85,7 @@
                 <th class="text-center">生产单位</th>
                 <th class="text-center">承运人</th>
                 <th class="text-center">操作日期</th>
-                <th class="text-center">操作</th>
+                <th class="text-center"></th>
               </tr>
             </thead>
             <tbody>
