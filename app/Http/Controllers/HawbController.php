@@ -13,8 +13,9 @@ class HawbController extends Controller
 	public function lists()
 	{
 		# code...
+        $title = "分单列表";
         $hawbs = Hawb::orderBy('fltdate','desc')->orderBy('regtime','desc')->paginate(20);
-		return view(theme("hawb.list"),["hawbs" => $hawbs]);
+		return view(theme("hawb.list"),compact('hawbs','title'));
 	}
     //
     public function show($hawb)

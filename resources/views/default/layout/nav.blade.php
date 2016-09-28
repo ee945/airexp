@@ -8,7 +8,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">樱豪出口单证系统</a>
+          <a class="navbar-brand" href="#">{{ env('CONF_SITE_NAME', 'Site Name') }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

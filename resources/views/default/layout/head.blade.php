@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>{{ isset($title) ? $title : 'default title' }}</title>
+    <title>{{ isset($title) ? $title : env('CONF_SITE_NAME', 'Site Name') }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
