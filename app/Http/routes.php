@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('test', 'Controller@test');
 // 分单列表
-Route::get('hawb/list', 'HawbController@lists');
+Route::any('hawb/list', 'HawbController@lists');
 // 分单信息（查看/修改）
 Route::get('hawb/show/{hawb}', 'HawbController@show');
 // 分单打印

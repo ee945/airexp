@@ -3,64 +3,70 @@
 @section('container')
     <div class="container theme-showcase" role="main">
       <div class="row">
-        <div class="col-md-11">
+        <div class="col-md-12">
           {!! Form::open() !!}
-          <table class="table table-condensed" style="margin-bottom: 2px;">
+          <table class="table table-condensed table-responsive" style="margin-bottom: 2px;">
             <tr>
               <td>
-                {!! Form::label('hawb', '分单号: ') !!}
-                {!! Form::text('hawb',null,['size'=>'12']) !!}
+                {!! Form::label('search_hawb', '分单号: ') !!}
+                {!! Form::text('search_hawb',isset($search_hawb)?$search_hawb:null,['size'=>'8']) !!}
               </td>
               <td>
-                {!! Form::label('dest', '目的港: ') !!}
-                {!! Form::text('dest',null,['size'=>'4']) !!}
+                {!! Form::label('search_mawb', '总单号: ') !!}
+                {!! Form::text('search_mawb',isset($search_mawb)?$search_mawb:null,['size'=>'10']) !!}
               </td>
               <td>
-                {!! Form::label('fltno', '航班号: ') !!}
-                {!! Form::text('fltno',null,['size'=>'5']) !!}
+                {!! Form::label('search_dest', '目的港: ') !!}
+                {!! Form::text('search_dest',isset($search_dest)?$search_dest:null,['size'=>'3']) !!}
               </td>
               <td>
-                {!! Form::label('forward', '货源: ') !!}
-                {!! Form::text('forward',null,['size'=>'4']) !!}
+                {!! Form::label('search_fltno', '航班号: ') !!}
+                {!! Form::text('search_fltno',isset($search_fltno)?$search_fltno:null,['size'=>'6']) !!}
               </td>
               <td>
-                {!! Form::label('factory', '生产单位: ') !!}
-                {!! Form::text('factory',null,['size'=>'8']) !!}
+                {!! Form::label('search_carrier', '承运人: ') !!}
+                {!! Form::text('search_carrier',isset($search_carrier)?$search_carrier:null,['size'=>'4']) !!}
               </td>
               <td>
-                {!! Form::label('paymt', '付费方式: ') !!}
-                {!! Form::text('paymt',null,['size'=>'4']) !!}
+                {!! Form::label('search_paymt', '付费方式: ') !!}
+                {!! Form::text('search_paymt',isset($search_paymt)?$search_paymt:null,['size'=>'2']) !!}
+              </td>
+              <td colspan="2">
+                {!! Form::label('search_fltstart', '航班日期: ') !!}
+                {!! Form::text('search_fltstart',isset($search_fltstart)?$search_fltstart:null,['size'=>'8']) !!}
+                {!! Form::label('search_fltend','-') !!}
+                {!! Form::text('search_fltend',isset($search_fltend)?$search_fltend:null,['size'=>'8']) !!}
               </td>
               <td>{!! Form::submit('查询') !!}</td>
             </tr>
             <tr>
-              <td>
-                {!! Form::label('mawb', '总单号: ') !!}
-                {!! Form::text('mawb',null,['size'=>'12']) !!}
+              <td colspan="4">
+                <div class="btn-group-sm">
+                  <button class="btn btn-default" type="button">TOTAL:</button>
+                  <button class="btn btn-success" type="button">NUM &nbsp;<span class="badge">{{ $total_num }}</span></button>
+                  <button class="btn btn-primary" type="button">GW &nbsp;<span class="badge">{{ $total_gw }}</span></button>
+                  <button class="btn btn-info" type="button">CW &nbsp;<span class="badge">{{ $total_cw }}</span></button>
+                  <button class="btn btn-warning" type="button">CBM &nbsp;<span class="badge">{{ $total_cbm }}</span></button>
+                </div>
               </td>
               <td>
-                {!! Form::label('carrier', '承运人: ') !!}
-                {!! Form::text('carrier',null,['size'=>'4']) !!}
+                {!! Form::label('search_consignee', '收货人: ') !!}
+                {!! Form::text('search_consignee',isset($search_consignee)?$search_consignee:null,['size'=>'4']) !!}
               </td>
               <td>
-                {!! Form::label('consignee', '收货人: ') !!}
-                {!! Form::text('consignee',null,['size'=>'5']) !!}
+                {!! Form::label('search_forward', '货源: ') !!}
+                {!! Form::text('search_forward',isset($search_forward)?$search_forward:null,['size'=>'4']) !!}
               </td>
               <td>
-                {!! Form::label('seller', '销售: ') !!}
-                {!! Form::text('seller',null,['size'=>'4']) !!}
-              </td>
-              <td>
-                {!! Form::label('fltdate', '航班日期: ') !!}
-                {!! Form::text('fltstart',null,['size'=>'8']) !!}
-                -
-                {!! Form::text('fltend',null,['size'=>'8']) !!}
+                {!! Form::label('search_factory', '生产单位: ') !!}
+                {!! Form::text('search_factory',isset($search_factory)?$search_factory:null,['size'=>'4']) !!}
               </td>
               <td>
                 {!! Form::label('perpage', '每页显示: ') !!}
-                {!! Form::text('perpage',null,['size'=>'4']) !!}
+                {!! Form::text('perpage',isset($perpage)?$perpage:20,['size'=>'4']) !!}
               </td>
-              <td>{!! Form::reset('重置') !!}</td>
+              {{-- <td>{!! Form::reset('重置') !!}</td> --}}
+              <td><button type="button" onclick="reset_search()">重置</button></td>
             </tr>
           </table>
           {!! Form::close() !!}
@@ -68,7 +74,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <table class="table table-striped table-hover table-bordered table-condensed" style="margin-bottom: 0;">
+          <table class="table table-striped table-hover table-bordered table-condensed table-responsive" style="margin-bottom: 0;">
             <thead>
               <tr>
                 <th class="text-center">分运单号</th>
@@ -118,4 +124,19 @@
         </div>
       </div>
     </div> <!-- /container -->
+    <script>
+      function reset_search(){
+        document.getElementById('search_hawb').value=null;
+        document.getElementById('search_mawb').value=null;
+        document.getElementById('search_dest').value=null;
+        document.getElementById('search_fltno').value=null;
+        document.getElementById('search_carrier').value=null;
+        document.getElementById('search_paymt').value=null;
+        document.getElementById('search_fltstart').value=null;
+        document.getElementById('search_fltend').value=null;
+        document.getElementById('search_consignee').value=null;
+        document.getElementById('search_forward').value=null;
+        document.getElementById('search_factory').value=null;
+      }
+    </script>
 @stop
