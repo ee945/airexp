@@ -62,7 +62,8 @@ class HawbController extends Controller
         $title = "分单修改";
 
     	$hawb = Hawb::where('hawb',$hawb)->first();
-    	return view(theme("hawb.form"), compact('hawb','title'));
+        return view(theme("hawb.form"), compact('hawb','title'));
+        // dd($hawb->paymt);
     }
 
     public function add()

@@ -12,10 +12,10 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">首页</a></li>
-            <li><a href="#about">分单输入</a></li>
-            <li><a href="#about">分单列表</a></li>
-            <li><a href="#contact">总单列表</a></li>
+            <li class="active"><a href="{{ url('/') }}">首页</a></li>
+            <li><a href="{{ route('hawb_add') }}">分单输入</a></li>
+            <li><a href="{{ route('hawb_list') }}">分单列表</a></li>
+            <li><a href="{{ route('mawb_list') }}">总单列表</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">统计报表<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">

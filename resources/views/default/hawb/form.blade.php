@@ -72,13 +72,30 @@
           <td>{!! Form::label('paymt', '付费方式: ') !!}</td>
           <td>{!! Form::text('paymt',isset($hawb->paymt)?$hawb->paymt:null,['size'=>'16']) !!}</td>
           <td>{!! Form::label('arranged', '价格显示: ') !!}</td>
-          <td>{!! Form::radio('arranged',0) !!}不显示&nbsp;{!! Form::radio('arranged',1) !!}显示&nbsp;</td>
+          <td>
+            {!! Form::radio('arranged',0,isset($hawb->arranged)?($hawb->arranged=="0"?true:false):true) !!}不显示&nbsp;
+            {!! Form::radio('arranged',1,isset($hawb->arranged)?($hawb->arranged=="1"?true:false):false) !!}显示&nbsp;
+          </td>
           <td></td>
           <td></td>
         </tr>
         <tr>
           <td>{!! Form::label('remark', '备注: ') !!}</td>
-          <td>{!! Form::textarea('remark',isset($hawb->remark)?$hawb->remark:null,['rows'=>5,'cols'=>30]) !!}</td>
+          <td>{!! Form::textarea('remark',isset($hawb->remark)?$hawb->remark:null,['rows'=>5,'cols'=>25]) !!}</td>
+          <td colspan="4">
+            <div class="alert alert-danger" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_mawb">
+              <strong>错误！</strong>总单号不符合规则
+            </div>
+            <div class="alert alert-danger" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_paymt">
+              <strong>错误！</strong>不存在的付费方式
+            </div>
+            <div class="alert alert-warning" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_heavy">
+              <strong>警告！</strong>此货物过重
+            </div>
+            <div class="alert alert-warning" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_light">
+              <strong>警告！</strong>此货物过轻
+            </div>
+          </td>
         </tr>
           <tr>
           <td></td>

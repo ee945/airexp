@@ -17,13 +17,13 @@ Route::get('/', function () {
 
 Route::get('test', 'Controller@test');
 // 分单列表
-Route::any('hawb/list', 'HawbController@lists');
+Route::any('hawb/list', 'HawbController@lists')->name('hawb_list');
 // 分单信息（查看/修改）
-Route::get('hawb/show/{hawb}', 'HawbController@show');
+Route::get('hawb/view/{hawb}', 'HawbController@show')->name('hawb_view');
 // 分单打印
-Route::get('hawb/print', 'HawbController@print');
+Route::get('hawb/print', 'HawbController@print')->name('hawb_print');
 // 分单输入（输入/提交）
-Route::get('hawb/add', 'HawbController@add');
+Route::get('hawb/add', 'HawbController@add')->name('hawb_add');
 Route::post('hawb/add', 'HawbController@add');
 // 分单修改（提交）
 Route::post('hawb/edit', 'HawbController@edit');
@@ -31,9 +31,9 @@ Route::post('hawb/edit', 'HawbController@edit');
 Route::post('hawb/del', 'HawbController@del');
 
 // 总单列表
-Route::get('mawb/list', 'MawbController@lists');
+Route::get('mawb/list', 'MawbController@lists')->name('mawb_list');
 // 总单信息（查看/修改）
-Route::get('mawb/show', 'MawbController@show');
+Route::get('mawb/view', 'MawbController@show');
 // 总单打印
 Route::get('mawb/print', 'MawbController@print');
 // 总单输入（输入/提交）
@@ -47,7 +47,7 @@ Route::post('mawb/del', 'MawbController@del');
 // 清单查找(按总单号)
 Route::get('manifest', 'ManifestController@search');
 // 清单信息
-Route::get('manifest/show', 'ManifestController@show');
+Route::get('manifest/view', 'ManifestController@show');
 // 清单打印
 Route::get('manifest/print', 'ManifestController@print');
 
