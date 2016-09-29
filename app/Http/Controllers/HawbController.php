@@ -58,12 +58,19 @@ class HawbController extends Controller
     //
     public function show($hawb)
     {
-    	# code...
-    	$hawbs = Hawb::where('hawb',$hawb)->get();
-    	foreach ($hawbs as $hawb) {
-    		# code...
-	    	echo $hawb->mawb;
-    	}
+        ## 分单修改
+        $title = "分单修改";
+
+    	$hawb = Hawb::where('hawb',$hawb)->first();
+    	return view(theme("hawb.form"), compact('hawb','title'));
+    }
+
+    public function add()
+    {
+        ## 分单输入
+        $title = "分单输入";
+
+        return view(theme("hawb.form"), compact('title'));
     }
 
     public function store()
