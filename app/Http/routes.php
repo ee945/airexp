@@ -20,14 +20,14 @@ Route::get('test', 'Controller@test');
 Route::any('hawb/list', 'HawbController@lists')->name('hawb_list');
 // 分单信息（查看/修改）
 Route::get('hawb/view/{hawb}', 'HawbController@show')->name('hawb_view');
-Route::post('hawb/view/{hawb}', 'HawbController@store');
-// 分单打印
-Route::get('hawb/print', 'HawbController@print')->name('hawb_print');
+Route::post('hawb/view/{hawb}', 'HawbController@update');
 // 分单输入（输入/提交）
 Route::get('hawb/add', 'HawbController@add')->name('hawb_add');
-Route::post('hawb/add', 'HawbController@store');
+Route::post('hawb/add', 'HawbController@create');
 // 分单删除
 Route::post('hawb/del', 'HawbController@del');
+// 分单打印
+Route::get('hawb/print', 'HawbController@print')->name('hawb_print');
 
 // 总单列表
 Route::get('mawb/list', 'MawbController@lists')->name('mawb_list');

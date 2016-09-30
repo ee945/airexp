@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-// use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Http\Requests\CreateHawbRequest;
+use App\Http\Requests\UpdateHawbRequest;
 use App\Hawb;
-use Request;
 
 class HawbController extends Controller
 {
 
-	public function lists()
+	public function lists(Request $request)
 	{
 		## 显示分单列表
         $title = "分单列表";
 
         # 获取表单搜索条件
-        $search = Request::all();
+        $search = $request->all();
         # 获取全部分单记录，按航班日期、添加时间排序
         $query = Hawb::orderBy('fltdate','desc')->orderBy('regtime','desc');
         # 逐一判断是否有筛选条件
@@ -74,17 +75,38 @@ class HawbController extends Controller
         return view(theme("hawb.form"), compact('title'));
     }
 
-    public function store()
+    public function create(CreateHawbRequest $request)
     {
         # code...
-        $hawb = Request::get('hawb');
-        $res = Hawb::where('hawb',$hawb)->first();
-        if($res){
-            Hawb::update(Request::all());
-            return redirect(route('hawb_view',$hawb));
-        }else{
-            Hawb::create(Request::all());
-            return redirect(route('hawb_list'));
-        }
+        Hawb::create($request->all());
+        return redirect(route('hawb_list'));
     }
+
+    public function update(UpdateHawbRequest $request)
+    {
+        # code...
+        $hawb = $request->get('hawb');
+        Hawb::where('hawb',$hawb)->update($request->except(['_token','forwardcode','factorycode']));
+        return redirect(route('hawb_view',$hawb));
+    }
+
+    // public function delete(Request $request)
+    // {
+    //     # code...
+    //     $hawb = $request->get('hawb');
+    //     $res = Hawb::where('hawb',$hawb)->first();
+    //     // dd($res);
+    //     if($res){
+    //         // Hawb::update(Request::all());
+    //         return redirect(route('hawb_view',$hawb));
+    //     }else{
+    //         $this->validate($request,[
+    //             'hawb' => 'required|unique:exp_hawb,hawb',
+    //             'dest' => 'required|size:3',      
+    //             'carrier' => 'required|min:2|max:4',                
+    //         ]);
+    //         // Hawb::create($request->all());
+    //         return redirect(route('hawb_list'));
+    //     }
+    // }
 }

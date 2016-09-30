@@ -87,18 +87,13 @@
           <td>{!! Form::label('remark', '备注: ') !!}</td>
           <td>{!! Form::textarea('remark',isset($hawb->remark)?$hawb->remark:null,['rows'=>5,'cols'=>25]) !!}</td>
           <td colspan="4">
-            <div class="alert alert-danger" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_mawb">
-              <strong>错误！</strong>总单号不符合规则
-            </div>
-            <div class="alert alert-danger" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_paymt">
-              <strong>错误！</strong>不存在的付费方式
-            </div>
-            <div class="alert alert-warning" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_heavy">
-              <strong>警告！</strong>此货物过重
-            </div>
-            <div class="alert alert-warning" role="alert" style="padding:5px;margin-bottom:5px;display:none;" id="alert_light">
-              <strong>警告！</strong>此货物过轻
-            </div>
+            @if($errors->any())
+            <ul class="alert alert-danger" role="alert" style="padding:5px 20px;margin-bottom:5px;">
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+            @endif
           </td>
         </tr>
           <tr>
