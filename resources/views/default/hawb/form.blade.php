@@ -8,7 +8,7 @@
         <col span="8" />
         <tr>
           <td style="width:80px;">{!! Form::label('opdate', '操作日期: ') !!}</td>
-          <td>{!! Form::text('opdate',isset($hawb->opdate)?$hawb->opdate:null,['size'=>'16']) !!}</td>
+          <td>{!! Form::date('opdate',isset($hawb->opdate)?$hawb->opdate:date('Y-m-d'),['size'=>'16']) !!}</td>
           <td style="width:80px;"></td>
           <td></td>
           <td style="width:80px;"></td>
@@ -16,7 +16,11 @@
         </tr>
         <tr>
           <td>{!! Form::label('hawb', '分单号: ') !!}</td>
+          @if($title=="分单输入")
+          <td>{!! Form::text('hawb',isset($hawb->hawb)?$hawb->hawb:null,['size'=>'16']) !!}</td>
+          @elseif($title=="分单修改")
           <td>{!! Form::text('hawb',isset($hawb->hawb)?$hawb->hawb:null,['size'=>'16','readonly'=>'readonly']) !!}</td>
+          @endif
           <td>{!! Form::label('mawb', '总单号: ') !!}</td>
           <td>{!! Form::text('mawb',isset($hawb->mawb)?$hawb->mawb:null,['size'=>'16']) !!}</td>
           <td></td>
@@ -32,7 +36,7 @@
           <td>{!! Form::label('fltno', '航班号: ') !!}</td>
           <td>{!! Form::text('fltno',isset($hawb->fltno)?$hawb->fltno:null,['size'=>'16']) !!}</td>
           <td>{!! Form::label('fltdate', '航班日期: ') !!}</td>
-          <td>{!! Form::text('fltdate',isset($hawb->fltdate)?$hawb->fltdate:null,['size'=>'16']) !!}</td>
+          <td>{!! Form::date('fltdate',isset($hawb->fltdate)?$hawb->fltdate:date('Y-m-d',strtotime("+1 day")),['size'=>'16']) !!}</td>
         </tr>
         <tr>
           <td>{!! Form::label('forwardcode', '货源: ') !!}</td>
@@ -99,7 +103,7 @@
         </tr>
           <tr>
           <td></td>
-          <td><input class="btn btn-primary" id="submit" type="submit" name="edithawb" value="修改"></td>
+          <td>{!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:100px;']) !!}</td>
           <td></td>
           <td></td>
           <td></td>

@@ -77,5 +77,14 @@ class HawbController extends Controller
     public function store()
     {
         # code...
+        $hawb = Request::get('hawb');
+        $res = Hawb::where('hawb',$hawb)->first();
+        if($res){
+            Hawb::update(Request::all());
+            return redirect(route('hawb_view',$hawb));
+        }else{
+            Hawb::create(Request::all());
+            return redirect(route('hawb_list'));
+        }
     }
 }
