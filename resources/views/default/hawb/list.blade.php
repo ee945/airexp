@@ -5,6 +5,22 @@
     <div class="row">
       <div class="col-md-12">
         {!! Form::open() !!}
+        @if(isset($del))
+          @if($del=="y")
+          <div class="alert alert-warning" style="padding:8px 15px;margin-bottom:10px" role="alert">
+            <strong>删除成功: &nbsp;{{ $delno }}&nbsp;已删除</strong>
+          </div>
+          @elseif($del=="n")
+          <div class="alert alert-danger" style="padding:8px 15px;margin-bottom:10px" role="alert">
+            <strong>删除失败: &nbsp;{{ $delno }}&nbsp;未找到</strong>
+          </div>
+          @endif
+        @endif
+        @if(isset($addno))
+          <div class="alert alert-success" style="padding:8px 15px;margin-bottom:10px" role="alert">
+            <strong>输入成功: &nbsp;<a href="{{ route('hawb_view',['hawb'=>$addno])}}">{{ $addno }}</a></strong>
+          </div>
+        @endif
         <table class="table table-condensed table-responsive" style="margin-bottom: 2px;">
           <tr>
             <td>
@@ -105,16 +121,16 @@
               <td class="text-right">{{ $hawb->num }}</td>
               <td class="text-right">{{ $hawb->gw }}</td>
               <td class="text-right">{{ $hawb->cw }}</td>
-              <td class="text-right">{{ round($hawb->cbm,2) }}</td>
+              <td class="text-right">{{ round($hawb->cbm,3) }}</td>
               <td>{{ $hawb->paymt }}</td>
               <td>{{ $hawb->forward }}</td>
               <td>{{ $hawb->factory }}</td>
               <td>{{ $hawb->carrier }}</td>
               <td>{{ $hawb->opdate }}</td>
               <td>
-                <button type="button" class="btn btn-xs btn-primary">打印</button>
-                <button type="button" class="btn btn-xs btn-success">清单</button>
-                <button type="button" class="btn btn-xs btn-danger">删除</button>
+                <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-xs btn-primary">打印</a>
+                <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-xs btn-success">清单</a>
+                <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" onclick="confirm('确定删除?')" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
             @endforeach

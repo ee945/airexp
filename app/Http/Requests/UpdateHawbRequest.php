@@ -35,11 +35,11 @@ class UpdateHawbRequest extends Request
             'seller' => 'required',
             'factory' => 'required',
             'carrier' => 'required|min:2|max:4',
-            'carriername' => 'required',
-            'num' => 'required|numeric',
-            'gw' => 'required|numeric',
-            'cw' => 'required|numeric',
-            'cbm' => 'required|numeric',
+            // 'carriername' => 'required',
+            'num' => 'required|numeric|min:1',
+            'gw' => 'required|numeric|min:1',
+            'cw' => 'required|numeric|min:1',
+            'cbm' => 'required|numeric|min:0.001',
             'paymt' => 'required|in:CC,CP,PP,PC',
             'arranged' => 'required'
         ];

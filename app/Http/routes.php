@@ -25,7 +25,7 @@ Route::post('hawb/view/{hawb}', 'HawbController@update');
 Route::get('hawb/add', 'HawbController@add')->name('hawb_add');
 Route::post('hawb/add', 'HawbController@create');
 // 分单删除
-Route::post('hawb/del', 'HawbController@del');
+Route::get('hawb/del/{hawb}', 'HawbController@delete')->name('hawb_del');
 // 分单打印
 Route::get('hawb/print', 'HawbController@print')->name('hawb_print');
 

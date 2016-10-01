@@ -77,36 +77,33 @@ class HawbController extends Controller
 
     public function create(CreateHawbRequest $request)
     {
-        # code...
+        # 新建分单 post
+        // dd($request->get('hawb'));
         Hawb::create($request->all());
-        return redirect(route('hawb_list'));
+        return redirect(route('hawb_list',['addno'=>$request->get('hawb')]));
     }
 
     public function update(UpdateHawbRequest $request)
     {
-        # code...
+        # 更新分单 post
         $hawb = $request->get('hawb');
-        Hawb::where('hawb',$hawb)->update($request->except(['_token','forwardcode','factorycode']));
-        return redirect(route('hawb_view',$hawb));
+        $query = Hawb::where('hawb',$hawb)->update($request->except(['_token','forwardcode','factorycode']));
+        if($query=='1'){
+            return redirect(route('hawb_view',['hawb'=>$hawb,'update'=>'y']));
+        }else{
+            return redirect(route('hawb_view',['hawb'=>$hawb]));
+        }
     }
 
-    // public function delete(Request $request)
-    // {
-    //     # code...
-    //     $hawb = $request->get('hawb');
-    //     $res = Hawb::where('hawb',$hawb)->first();
-    //     // dd($res);
-    //     if($res){
-    //         // Hawb::update(Request::all());
-    //         return redirect(route('hawb_view',$hawb));
-    //     }else{
-    //         $this->validate($request,[
-    //             'hawb' => 'required|unique:exp_hawb,hawb',
-    //             'dest' => 'required|size:3',      
-    //             'carrier' => 'required|min:2|max:4',                
-    //         ]);
-    //         // Hawb::create($request->all());
-    //         return redirect(route('hawb_list'));
-    //     }
-    // }
+    public function delete($hawb)
+    {
+        # 删除分单 get
+        $res = Hawb::where('hawb',$hawb)->first();
+        if($res){
+            Hawb::where('hawb',$hawb)->delete();
+            return redirect(route('hawb_list',['del'=>'y','delno'=>$hawb]));
+        }else{
+            return redirect(route('hawb_list',['del'=>'n','delno'=>$hawb]));
+        }
+    }
 }

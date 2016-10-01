@@ -4,6 +4,11 @@
   <div class="container theme-showcase" role="main">
     <div class="row text-center">
       {!! Form::open() !!}
+        @if(isset($_GET['update']))
+        <div class="alert alert-success text-left" style="padding:8px 15px;margin-bottom:10px" role="alert">
+          <strong>修改成功！</strong>
+        </div>
+        @endif
       <table class="table text-left" style="width:90%;">
         <col span="8" />
         <tr>
@@ -57,7 +62,7 @@
           <td>
             {!! Form::text('carrier',isset($hawb->carrier)?$hawb->carrier:null,['size'=>'6']) !!}
             {!! Form::label('carriername', "&nbsp;") !!}
-            {!! Form::text('carriername',isset($hawb->carriername)?$hawb->carriername:null,['size'=>'7']) !!}
+            {!! Form::text('carriername',isset($hawb->carriername)?$hawb->carriername:null,['size'=>'7','readonly'=>'readonly']) !!}
           </td>
         </tr>
         <tr>
@@ -108,7 +113,22 @@
       {!! Form::close() !!}
     </div>
   </div> <!-- /container -->
-  <script>
 
+  <script src="/js/jquery.min.js"></script>
+  <script>
+    $("input[name='cbm']").blur(function(){
+    //输入体积自动处理收费重量
+      cbmw=$("input[name='cbm").val()/0.006;
+      gw=$("input[name='gw']").val();
+      cw=Math.round((cbmw>=gw)?cbmw:gw);
+      $("input[name='cw']").attr("value",cw);
+    });
+    $("input[name='gw']").blur(function(){
+    //输入实际重量自动处理收费重量
+      cbmw=$("input[name='cbm").val()/0.006;
+      gw=$("input[name='gw']").val();
+      cw=Math.round((cbmw>=gw)?cbmw:gw);
+      $("input[name='cw']").attr("value",cw);
+    });
   </script>
 @stop
