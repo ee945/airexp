@@ -89,7 +89,7 @@ class HawbController extends Controller
         $hawb = $request->get('hawb');
         $query = Hawb::where('hawb',$hawb)->update($request->except(['_token','forwardcode','factorycode']));
         if($query=='1'){
-            return redirect(route('hawb_view',['hawb'=>$hawb,'update'=>'y']));
+            return redirect(route('hawb_view',['hawb'=>$hawb,'update'=>'yes']));
         }else{
             return redirect(route('hawb_view',['hawb'=>$hawb]));
         }
@@ -101,9 +101,9 @@ class HawbController extends Controller
         $res = Hawb::where('hawb',$hawb)->first();
         if($res){
             Hawb::where('hawb',$hawb)->delete();
-            return redirect(route('hawb_list',['del'=>'y','delno'=>$hawb]));
+            return redirect(route('hawb_list',['del'=>'yes','delno'=>$hawb]));
         }else{
-            return redirect(route('hawb_list',['del'=>'n','delno'=>$hawb]));
+            return redirect(route('hawb_list',['del'=>'no','delno'=>$hawb]));
         }
     }
 }

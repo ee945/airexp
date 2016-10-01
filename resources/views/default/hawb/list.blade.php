@@ -6,11 +6,11 @@
       <div class="col-md-12">
         {!! Form::open() !!}
         @if(isset($del))
-          @if($del=="y")
+          @if($del=="yes")
           <div class="alert alert-warning" style="padding:8px 15px;margin-bottom:10px" role="alert">
             <strong>删除成功: &nbsp;{{ $delno }}&nbsp;已删除</strong>
           </div>
-          @elseif($del=="n")
+          @elseif($del=="no")
           <div class="alert alert-danger" style="padding:8px 15px;margin-bottom:10px" role="alert">
             <strong>删除失败: &nbsp;{{ $delno }}&nbsp;未找到</strong>
           </div>
