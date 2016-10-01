@@ -26,7 +26,7 @@ class UpdateHawbRequest extends Request
         return [
             'opdate' => 'required|date',
             'hawb' => 'required',
-            'mawb' => 'required',
+            'mawb' => 'required|regex:/^\d{3}-\d{8}$/|ismawb',
             'dest' => 'required',
             'desti' => 'required',
             'fltno' => 'required',
