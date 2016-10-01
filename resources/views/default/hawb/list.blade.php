@@ -130,7 +130,7 @@
               <td>
                 <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-xs btn-primary">打印</a>
                 <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-xs btn-success">清单</a>
-                <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" onclick="confirm('确定删除?')" type="button" class="btn btn-xs btn-danger">删除</a>
+                <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" onclick="if(confirm('确定删除&nbsp;“{{$hawb->hawb}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
             @endforeach
