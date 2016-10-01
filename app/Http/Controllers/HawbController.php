@@ -56,7 +56,7 @@ class HawbController extends Controller
         #返回分单列表视图 - 传入参数（分单记录集合、网页title、统计总和，以及查询条件）
 		return view(theme("hawb.list"),compact('hawbs','title','total_num','total_gw','total_cw','total_cbm'))->with($search);
 	}
-    //
+
     public function show($hawb)
     {
         ## 分单修改
@@ -64,7 +64,6 @@ class HawbController extends Controller
 
     	$hawb = Hawb::where('hawb',$hawb)->first();
         return view(theme("hawb.form"), compact('hawb','title'));
-        // dd($hawb->paymt);
     }
 
     public function add()
@@ -78,7 +77,6 @@ class HawbController extends Controller
     public function create(CreateHawbRequest $request)
     {
         # 新建分单 post
-        // dd($request->get('hawb'));
         Hawb::create($request->all());
         return redirect(route('hawb_list',['addno'=>$request->get('hawb')]));
     }
