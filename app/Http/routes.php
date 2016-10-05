@@ -23,6 +23,9 @@ Route::get('get/forward/{forwardcode}', 'ClientController@getForward');
 Route::get('get/factory/{factorycode}', 'ClientController@getFactory');
 Route::get('get/carrier/{carrier}', 'ClientController@getCarrierName');
 Route::get('get/seller/{forward}', 'SellerController@getSeller');
+Route::get('get/hshipper/{shippercode}', 'AddrController@getHShipper');
+Route::get('get/hconsignee/{consigneecode}', 'AddrController@getHConsignee');
+Route::get('get/hnotify/{notifycode}', 'AddrController@getHNotify');
 
 // 分单列表
 Route::any('hawb/list', 'HawbController@lists')->name('hawb_list');
@@ -35,7 +38,9 @@ Route::post('hawb/add', 'HawbController@create');
 // 分单删除
 Route::get('hawb/del/{hawb}', 'HawbController@delete')->name('hawb_del');
 // 分单打印
-Route::get('hawb/print', 'HawbController@print')->name('hawb_print');
+Route::get('hawb/print/{hawb}', 'HawbController@hawbPrint')->name('hawb_print');
+Route::post('hawb/print/{hawb}', 'HawbController@hawbSavePrint');
+Route::get('hawb/printout/{hawb}', 'HawbController@hawbPrintOut')->name('hawb_printout');
 
 // 总单列表
 Route::get('mawb/list', 'MawbController@lists')->name('mawb_list');
@@ -54,7 +59,7 @@ Route::post('mawb/del', 'MawbController@del');
 // 清单查找(按总单号)
 Route::get('manifest', 'ManifestController@search');
 // 清单信息
-Route::get('manifest/view', 'ManifestController@show');
+Route::get('manifest/view/{mawb}', 'ManifestController@show')->name('manifest');
 // 清单打印
 Route::get('manifest/print', 'ManifestController@print');
 

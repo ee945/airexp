@@ -133,6 +133,11 @@ return [
         'cbm' => '体积',
         'paymt' => '付费方式',
         'remark' => '备注',
+        'rclass' => '运价等级',
+        'cgodescp' => '品名',
+        'shipper' => '发货人',
+        'consignee' => '收货人',
+        'notify' => '通知人',
     ],
 
 ];

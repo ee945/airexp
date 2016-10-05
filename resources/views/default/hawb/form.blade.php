@@ -4,11 +4,11 @@
   <div class="container theme-showcase" role="main">
     <div class="row text-center">
       {!! Form::open() !!}
-        @if(isset($_GET['update']))
-        <div class="alert alert-success text-left" style="padding:8px 15px;margin-bottom:10px" role="alert">
-          <strong>修改成功！</strong>
-        </div>
-        @endif
+      @if(isset($_GET['update']))
+      <div class="alert alert-success text-left" style="padding:8px 15px;margin-bottom:10px" role="alert">
+        <strong>修改成功！</strong>
+      </div>
+      @endif
       <table class="table text-left" style="width:90%;">
         <col span="8" />
         <tr>
@@ -103,7 +103,13 @@
         </tr>
           <tr>
           <td></td>
-          <td>{!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:100px;']) !!}</td>
+          <td>
+            {!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:80px;']) !!}
+            @if(isset($hawb->hawb))
+            &nbsp;&nbsp;
+            <a href="{{ route('hawb_print',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-success">打印</a>
+            @endif
+          </td>
           <td></td>
           <td></td>
           <td></td>
@@ -116,6 +122,10 @@
 
   <script src="/js/jquery.min.js"></script>
   <script>
+    $(document).ready(function(){
+      $(":text").attr("style",'text-transform:uppercase;');
+      $("textarea").attr("style",'text-transform:uppercase;');
+    });
     //输入体积自动处理收费重量
     $("input[name='cbm']").blur(function(){
       cbmw=$("input[name='cbm']").val()/0.006;
@@ -179,12 +189,13 @@
     $("input[name='forward']").blur(function(){
     //根据货源名称自动显示补全所属销售人
       var forward = $("input[name='forward']").val();
+      var defaultseller = "{{ env('CONF_AGENT_CODE', 'CODE') }}";
       if(forward!=""){
         $.get('{{url('get/seller')}}/'+forward,function(json){
           if(json.seller!=null){
             $("input[name='seller']").val(json.seller);
           }else{
-            $("input[name='seller']").val("SYIL");
+            $("input[name='seller']").val(defaultseller);
           }
         });
       }

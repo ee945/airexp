@@ -27,7 +27,20 @@ class Hawb extends Model
     	'cbm',
     	'paymt',
     	'arranged',
-    	'remark'
+    	'remark',
+        'depar',
+        'consignee',
+        'notify',
+        'shipper',
+        'curr',
+        'nvd',
+        'ncv',
+        'package',
+        'rclass',
+        'special',
+        'cgodescp',
+        'agentabbr',
+        'regtime'
     ];
 
     protected $primaryKey = "id";
