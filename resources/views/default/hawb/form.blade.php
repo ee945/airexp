@@ -181,8 +181,11 @@
       var forward = $("input[name='forward']").val();
       if(forward!=""){
         $.get('{{url('get/seller')}}/'+forward,function(json){
-          if(json.seller==null)json.seller=='';
-          $("input[name='seller']").val(json.seller);
+          if(json.seller!=null){
+            $("input[name='seller']").val(json.seller);
+          }else{
+            $("input[name='seller']").val("SYIL");
+          }
         });
       }
     });
