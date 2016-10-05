@@ -116,19 +116,75 @@
 
   <script src="/js/jquery.min.js"></script>
   <script>
-    $("input[name='cbm']").blur(function(){
     //输入体积自动处理收费重量
-      cbmw=$("input[name='cbm").val()/0.006;
+    $("input[name='cbm']").blur(function(){
+      cbmw=$("input[name='cbm']").val()/0.006;
       gw=$("input[name='gw']").val();
       cw=Math.round((cbmw>=gw)?cbmw:gw);
       $("input[name='cw']").attr("value",cw);
     });
-    $("input[name='gw']").blur(function(){
+
     //输入实际重量自动处理收费重量
-      cbmw=$("input[name='cbm").val()/0.006;
+    $("input[name='gw']").blur(function(){
+      cbmw=$("input[name='cbm']").val()/0.006;
       gw=$("input[name='gw']").val();
       cw=Math.round((cbmw>=gw)?cbmw:gw);
       $("input[name='cw']").attr("value",cw);
+    });
+
+    //输入目的港三字代码自动显示补全机场全称
+    $("input[name='dest']").blur(function(){
+      var dest = $("input[name='dest']").val();
+      if(dest!=''){
+        $.get('{{url('get/dest')}}/'+dest,function(json){
+          if(json.name==null)json.name=='';
+          $("input[name='desti']").val(json.name);
+        });
+      }
+    });
+
+    //输入货源代码自动显示补全名称
+    $("input[name='forwardcode']").blur(function(){
+      var forwardcode = $("input[name='forwardcode']").val();
+      if(forwardcode!=""){
+        $.get('{{url('get/forward')}}/'+forwardcode,function(json){
+          if(json.name==null)json.name=='';
+          $("input[name='forward']").val(json.name);
+        });
+      }
+    });
+
+    //输入生产单位代码自动显示补全名称
+    $("input[name='factorycode']").blur(function(){
+      var factorycode = $("input[name='factorycode']").val();
+      if(forwardcode!=""){
+        $.get('{{url('get/factory')}}/'+factorycode,function(json){
+          if(json.name==null)json.name=='';
+          $("input[name='factory']").val(json.name);
+        });
+      }
+    });
+
+    //输入承运人代码自动显示补全名称
+    $("input[name='carrier']").blur(function(){
+      var carrier = $("input[name='carrier']").val();
+      if(carrier!=""){
+        $.get('{{url('get/carrier')}}/'+carrier,function(json){
+          if(json.name==null)json.name=='';
+          $("input[name='carriername']").val(json.name);
+        });
+      }
+    });
+
+    $("input[name='forward']").blur(function(){
+    //根据货源名称自动显示补全所属销售人
+      var forward = $("input[name='forward']").val();
+      if(forward!=""){
+        $.get('{{url('get/seller')}}/'+forward,function(json){
+          if(json.seller==null)json.seller=='';
+          $("input[name='seller']").val(json.seller);
+        });
+      }
     });
   </script>
 @stop

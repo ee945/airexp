@@ -16,6 +16,14 @@ Route::get('/', function () {
 });
 
 Route::get('test', 'Controller@test');
+
+// AJAX获取数据库数据填入表单
+Route::get('get/dest/{dest}', 'PortController@getPort');
+Route::get('get/forward/{forwardcode}', 'ClientController@getForward');
+Route::get('get/factory/{factorycode}', 'ClientController@getFactory');
+Route::get('get/carrier/{carrier}', 'ClientController@getCarrierName');
+Route::get('get/seller/{forward}', 'SellerController@getSeller');
+
 // 分单列表
 Route::any('hawb/list', 'HawbController@lists')->name('hawb_list');
 // 分单信息（查看/修改）

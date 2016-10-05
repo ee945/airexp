@@ -35,7 +35,7 @@ class UpdateHawbRequest extends Request
             'seller' => 'required',
             'factory' => 'required',
             'carrier' => 'required|min:2|max:4',
-            // 'carriername' => 'required',
+            'carriername' => 'required',
             'num' => 'required|numeric|min:1',
             'gw' => 'required|numeric|min:1',
             'cw' => 'required|numeric|min:1',
