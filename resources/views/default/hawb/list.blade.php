@@ -81,7 +81,6 @@
               {!! Form::label('perpage', '每页显示: ') !!}
               {!! Form::text('perpage',isset($perpage)?$perpage:20,['size'=>'4']) !!}
             </td>
-            {{-- <td>{!! Form::reset('重置') !!}</td> --}}
             <td><button type="button" onclick="reset_search()">重置</button></td>
           </tr>
         </table>
@@ -93,20 +92,20 @@
         <table class="table table-striped table-hover table-bordered table-condensed table-responsive" style="margin-bottom: 0;">
           <thead>
             <tr>
-              <th class="text-center">分运单号</th>
-              <th class="text-center">总运单号</th>
-              <th class="text-center">目的港</th>
-              <th class="text-center">航班号</th>
-              <th class="text-center">航班日期</th>
-              <th class="text-center">件数</th>
-              <th class="text-center">实际重量</th>
-              <th class="text-center">收费重量</th>
-              <th class="text-center">体积</th>
-              <th class="text-center">付费</th>
-              <th class="text-center">货源</th>
-              <th class="text-center">生产单位</th>
-              <th class="text-center">承运人</th>
-              <th class="text-center">操作日期</th>
+              <th class="text-center" width=7.8%>分运单号</th>
+              <th class="text-center" width=10.1%>总运单号</th>
+              <th class="text-center" width=4.8%>目的港</th>
+              <th class="text-center" width=5.8%>航班号</th>
+              <th class="text-center" width=8.1%>航班日期</th>
+              <th class="text-center" width=4.1%>件数</th>
+              <th class="text-center" width=5.9%>实际重量</th>
+              <th class="text-center" width=5.9%>收费重量</th>
+              <th class="text-center" width=5.1%>体积</th>
+              <th class="text-center" width=3.7%>付费</th>
+              <th class="text-center" width=6.1%>货源</th>
+              <th class="text-center" width=8.4%>生产单位</th>
+              <th class="text-center" width=4.8%>承运人</th>
+              <th class="text-center" width=8.1%>操作日期</th>
               <th class="text-center"></th>
             </tr>
           </thead>
@@ -117,17 +116,17 @@
               <td>{{ $hawb->mawb }}</td>
               <td>{{ $hawb->dest }}</td>
               <td>{{ $hawb->fltno }}</td>
-              <td>{{ $hawb->fltdate }}</td>
+              <td class="text-center">{{ $hawb->fltdate }}</td>
               <td class="text-right">{{ $hawb->num }}</td>
               <td class="text-right">{{ $hawb->gw }}</td>
               <td class="text-right">{{ $hawb->cw }}</td>
               <td class="text-right">{{ round($hawb->cbm,3) }}</td>
-              <td>{{ $hawb->paymt }}</td>
+              <td class="text-center">{{ $hawb->paymt }}</td>
               <td>{{ $hawb->forward }}</td>
               <td>{{ $hawb->factory }}</td>
               <td>{{ $hawb->carrier }}</td>
-              <td>{{ $hawb->opdate }}</td>
-              <td>
+              <td class="text-center">{{ $hawb->opdate }}</td>
+              <td class="text-center">
                 <a href="{{ route('hawb_print',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-xs btn-success">打印</a>
                 <a href="{{ route('manifest',['hawb'=>$hawb->mawb])}}" type="button" class="btn btn-xs btn-primary">清单</a>
                 <a href="{{ route('hawb_del',['hawb'=>$hawb->hawb])}}" onclick="if(confirm('确定删除&nbsp;“{{$hawb->hawb}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
