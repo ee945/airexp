@@ -28,6 +28,7 @@ Route::get('get/hconsignee/{consigneecode}', 'AddrController@getHConsignee');
 Route::get('get/hnotify/{notifycode}', 'AddrController@getHNotify');
 
 // 分单列表
+Route::any('hawb', function(){return redirect(route('hawb_list'));});
 Route::any('hawb/list', 'HawbController@lists')->name('hawb_list');
 // 分单信息（查看/修改）
 Route::get('hawb/view/{hawb}', 'HawbController@show')->name('hawb_view');
@@ -40,7 +41,6 @@ Route::get('hawb/del/{hawb}', 'HawbController@delete')->name('hawb_del');
 // 分单打印
 Route::get('hawb/print/{hawb}', 'HawbController@hawbPrint')->name('hawb_print');
 Route::post('hawb/print/{hawb}', 'HawbController@hawbSavePrint');
-Route::get('hawb/printout/{hawb}', 'HawbController@hawbPrintOut')->name('hawb_printout');
 
 // 总单列表
 Route::get('mawb/list', 'MawbController@lists')->name('mawb_list');
@@ -62,6 +62,11 @@ Route::get('manifest', 'ManifestController@search');
 Route::get('manifest/view/{mawb}', 'ManifestController@show')->name('manifest');
 // 清单打印
 Route::get('manifest/print', 'ManifestController@print');
+
+// 打印单证
+Route::get('print/hawb/{hawb}', 'PrintController@printHawb')->name('print_hawb');
+Route::get('print/mawb/{mawb}', 'PrintController@printMawb')->name('print_mawb');
+Route::get('print/manifest/{mawb}', 'PrintController@printMani')->name('print_mani');
 
 // 货量统计（按日期范围）
 Route::get('report/daily', 'ReportController@daily');
