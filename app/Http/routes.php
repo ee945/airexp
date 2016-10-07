@@ -43,18 +43,13 @@ Route::get('hawb/print/{hawb}', 'HawbController@hawbPrint')->name('hawb_print');
 Route::post('hawb/print/{hawb}', 'HawbController@hawbSavePrint');
 
 // 总单列表
-Route::get('mawb/list', 'MawbController@lists')->name('mawb_list');
-// 总单信息（查看/修改）
-Route::get('mawb/view', 'MawbController@show');
+Route::any('mawb', function(){return redirect(route('mawb_list'));});
+Route::any('mawb/list', 'MawbController@lists')->name('mawb_list');
 // 总单打印
-Route::get('mawb/print', 'MawbController@print');
-// 总单输入（输入/提交）
-Route::get('mawb/add', 'MawbController@add');
-Route::post('mawb/add', 'MawbController@add');
-// 总单修改（提交）
-Route::post('mawb/edit', 'MawbController@edit');
+Route::get('mawb/print/{mawb}', 'MawbController@mawbPrint')->name('mawb_print');
+Route::post('mawb/print/{mawb}', 'MawbController@mawbSavePrint');
 // 总单删除
-Route::post('mawb/del', 'MawbController@del');
+Route::get('mawb/del/{mawb}', 'MawbController@delete')->name('mawb_del');
 
 // 清单查找(按总单号)
 Route::get('manifest', 'ManifestController@search');
