@@ -46,4 +46,45 @@ class MawbController extends Controller
         // 返回总单列表视图 - 传入参数（总单记录集合、网页title、统计总和，以及查询条件）
 		return view(theme("mawb.list"),compact('mawbs','title','total_num','total_gw','total_cw','total_cbm'))->with($search);
 	}
+
+    public function mawbPrint($mawb)
+    {
+        ## 总单打印
+        $title = "总单打印";
+
+        $mawb = Mawb::where('mawb',$mawb)->first();
+        // 找不到该总单则返回列表页
+        // if(empty($mawb))return redirect(route('mawb_list'));
+
+        // 新建默认数组data[]，用于预设表单
+        $data = [];
+
+        // 固定设置
+
+        // 通用预设
+
+        return view(theme("mawb.mawb"), compact('mawb','title'))->with($data);
+    }
+
+    public function mawbSavePrint(Request $request)
+    {
+        # 保存打印总单 post
+        $mawb = $request->get('mawb');
+        // 自定义验证规则
+        $this->validate($request,[
+            'shipper'=>'required',
+            'consignee'=>'required',
+            'notify'=>'required',
+            'rclass'=>'required|in:M,N,Q',
+            'cgodescp'=>'required'
+        ]);
+        // 按总单号更新总单信息
+        $query = Mawb::where('mawb',$mawb)->update($request->except(['_token','shippercode','consigneecode','notifycode','fltprefix','operator']));
+        // 保存成功则提示成功信息，并返回总单列表，否则直接返回列表
+        if($query=='1'){
+            return redirect(route('mawb_print',['mawb'=>$mawb,'save'=>'yes']));
+        }else{
+            return redirect(route('mawb_print',['mawb'=>$mawb]));
+        }
+    }
 }
