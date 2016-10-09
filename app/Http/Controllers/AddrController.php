@@ -28,4 +28,10 @@ class AddrController extends Controller
     	$notify = Address::where('code',$notifycode)->where('cata','分单通知人')->first();
     	return $notify;
     }
+    public function getMConsignee($oversea)
+    {
+        # code...
+        $consignee = Address::where('code',$oversea)->where('cata','总单收货人')->first();
+        return $consignee;
+    }
 }

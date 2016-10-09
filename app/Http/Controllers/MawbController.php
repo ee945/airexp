@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Mawb;
+use App\Hawb;
+use Illuminate\Support\Facades\DB;
 
 class MawbController extends Controller
 {
@@ -47,23 +49,37 @@ class MawbController extends Controller
 		return view(theme("mawb.list"),compact('mawbs','title','total_num','total_gw','total_cw','total_cbm'))->with($search);
 	}
 
-    public function mawbPrint($mawb)
+    public function mawbPrint($mawbno)
     {
         ## 总单打印
         $title = "总单打印";
 
-        $mawb = Mawb::where('mawb',$mawb)->first();
+        $mawb = Mawb::where('mawb',$mawbno)->first();
         // 找不到该总单则返回列表页
-        // if(empty($mawb))return redirect(route('mawb_list'));
+        if(empty($mawb)){
+            $mawb = Hawb::where('mawb', $mawbno)
+                ->select('mawb',DB::raw('SUM(num) as num'),DB::raw('SUM(gw) as gw'),'dest','desti','fltno','fltdate','opdate','depar')
+                ->groupBy('mawb')
+                ->first();
+            if(empty($mawb))return redirect(route('mawb_list'));
+            // 预设表单 - 通用
+            $mawb->shipper = str_replace('\n',"\n",env("CONF_AGENT_ADDR","COMPANY NAME\nADDRESS"));
+            $mawb->carrier = substr($mawb->fltno,0,2);
+            $mawb->cgodescp = "CONSOL CARGO";
+            $mawb->atplace = "SHANGHAI";
+            $mawb->signature = env('CONF_AGENT_CODE', 'CODE').'/SHA';
+            $mawb->operator = "";
+            $mawb->aw = 50;
+            // 预设表单 - 条件判断
+            if(substr($mawb->mawb,0,3) == "999"){
+                // 根据运单判断制单费油战险名称代码
+                $mawb->awn="AWC";
+                $mawb->myn="MYC";
+                $mawb->scn="MSC";
+            }
+        }
 
-        // 新建默认数组data[]，用于预设表单
-        $data = [];
-
-        // 固定设置
-
-        // 通用预设
-
-        return view(theme("mawb.mawb"), compact('mawb','title'))->with($data);
+        return view(theme("mawb.mawb"), compact('mawb','title'));
     }
 
     public function mawbSavePrint(Request $request)
@@ -75,6 +91,7 @@ class MawbController extends Controller
             'shipper'=>'required',
             'consignee'=>'required',
             'notify'=>'required',
+            'hawb'=>'required',
             'rclass'=>'required|in:M,N,Q',
             'cgodescp'=>'required'
         ]);

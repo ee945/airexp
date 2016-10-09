@@ -26,6 +26,7 @@ Route::get('get/seller/{forward}', 'SellerController@getSeller');
 Route::get('get/hshipper/{shippercode}', 'AddrController@getHShipper');
 Route::get('get/hconsignee/{consigneecode}', 'AddrController@getHConsignee');
 Route::get('get/hnotify/{notifycode}', 'AddrController@getHNotify');
+Route::get('get/mconsignee/{oversea}', 'AddrController@getMConsignee');
 
 // 分单列表
 Route::any('hawb', function(){return redirect(route('hawb_list'));});

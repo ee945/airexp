@@ -113,7 +113,7 @@
             @foreach($hawbs as $hawb)
             <tr>
               <td><a href="{{ route('hawb_view',['hawb'=>$hawb->hawb])}}">{{ $hawb->hawb }}</a></td>
-              <td>{{ $hawb->mawb }}</td>
+              <td><a href="{{ route('mawb_print',['mawb'=>$hawb->mawb])}}">{{ $hawb->mawb }}</a></td>
               <td>{{ $hawb->dest }}</td>
               <td>{{ $hawb->fltno }}</td>
               <td class="text-center">{{ $hawb->fltdate }}</td>
