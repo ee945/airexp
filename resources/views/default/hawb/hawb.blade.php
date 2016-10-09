@@ -15,8 +15,8 @@
         </div>
         @endif
         @if($errors->any())
-        <div class="alert alert-danger text-left" style="padding-bottom: 5px;margin-bottom:15px" role="alert">
-          <div style="width:880px;margin-left:auto;margin-right:auto;">
+        <div class="alert alert-danger text-left" style="width:880px;padding-bottom: 5px;margin-bottom:15px" role="alert">
+          <div style="margin-left:auto;margin-right:auto;">
             <ul>
               @foreach ($errors->all() as $error)
               <li><strong>{{ $error }}</strong></li>
