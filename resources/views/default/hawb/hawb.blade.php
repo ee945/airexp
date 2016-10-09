@@ -9,7 +9,7 @@
         </style>
         {!! Form::open() !!}
         @if(isset($_GET['save']))
-        <div class="alert alert-success text-center" style="padding:8px 0px;margin-bottom:15px" role="alert">
+        <div class="alert alert-success text-center" style="width:880px;padding:8px 0px;margin-bottom:15px" role="alert">
           <strong>保存成功！</strong>
           <a href="{{ route('print_hawb',['hawb'=>$hawb->hawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
         </div>
@@ -298,7 +298,7 @@
               </td>
           </tr>
         </table>
-        <div style="position:relative;left:50%;top:0px;margin-top: 10px;margin-left: -90px;">
+        <div class="text-center" style="width:880px;padding:10px 0px;">
           {!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:80px;']) !!}
           <a href="{{ route('print_hawb',['hawb'=>$hawb->hawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
         </div>
