@@ -29,7 +29,7 @@ class UpdateHawbRequest extends Request
             'mawb' => 'required|regex:/^\d{3}-\d{8}$/|ismawb',
             'dest' => 'required',
             'desti' => 'required',
-            'fltno' => 'required',
+            'fltno' => 'required|regex:/^[A-Z0-9]{2}\d{3,4}$/',
             'fltdate' => 'required|date',
             'forward' => 'required',
             'seller' => 'required',

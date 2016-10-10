@@ -325,7 +325,7 @@
           </table>
         <div class="text-center" style="width:880px;padding:10px 0px;">
           {!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:80px;']) !!}
-          {{-- <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a> --}}
+          <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
         </div>
         {!! Form::close() !!}
       </div>

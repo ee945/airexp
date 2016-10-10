@@ -85,23 +85,42 @@ class MawbController extends Controller
     public function mawbSavePrint(Request $request)
     {
         # 保存打印总单 post
-        $mawb = $request->get('mawb');
+        $mawbno = $request->get('mawb');
         // 自定义验证规则
         $this->validate($request,[
+            'mawb'=>'required',
             'shipper'=>'required',
             'consignee'=>'required',
-            'notify'=>'required',
-            'hawb'=>'required',
+            'fltno'=>'required|regex:/^[A-Z0-9]{2}\d{3,4}$/',
+            'fltdate'=>'required|date',
+            'package'=>'required',
+            'num'=>'required|integer',
+            'gw'=>'required|integer',
+            'cw'=>'required|integer',
+            'up'=>'required|numeric',
+            'cgodescp'=>'required',
+            'cbm'=>'required|numeric',
+            'awn'=>'alpha',
+            'myn'=>'alpha',
+            'scn'=>'alpha',
+            'aw'=>'required|numeric',
+            'myup'=>'numeric',
+            'scup'=>'numeric',
+            'my'=>'numeric',
+            'sc'=>'numeric',
             'rclass'=>'required|in:M,N,Q',
-            'cgodescp'=>'required'
+            'opdate'=>'required|date',
+            'atplace'=>'required',
+            // 'operator'=>'required',
         ]);
-        // 按总单号更新总单信息
-        $query = Mawb::where('mawb',$mawb)->update($request->except(['_token','shippercode','consigneecode','notifycode','fltprefix','operator']));
-        // 保存成功则提示成功信息，并返回总单列表，否则直接返回列表
-        if($query=='1'){
-            return redirect(route('mawb_print',['mawb'=>$mawb,'save'=>'yes']));
+        $mawb = Mawb::where('mawb',$mawbno)->first();
+        // 查找总单表，没有则创建，有则更新
+        if(empty($mawb)){
+            Mawb::create($request->all());
         }else{
-            return redirect(route('mawb_print',['mawb'=>$mawb]));
+            Mawb::where('mawb',$mawbno)->update($request->except(['_token','curr']));
         }
+        // 保存成功则提示成功信息，并返回总单列表，否则直接返回列表
+        return redirect(route('mawb_print',['mawb'=>$mawbno,'save'=>'yes']));
     }
 }
