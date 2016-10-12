@@ -118,7 +118,7 @@ position:absolute;left:{{ $opdate_x }}px;top:{{ $opdate_y }}px;}
 <div id="wpp">P</div>
 <div id="opp">P</div>
 <div id="nvd">{{ $nvd }}</div>
-<div id="flt">{{ $flt) }}</div>
+<div id="flt">{{ $flt }}</div>
 <div id="special">{{ $mawb->special }}</div>
 <div id="package">{{ $mawb->package }}</div>
 <div id="num">{{ $mawb->num }}</div>
@@ -139,6 +139,6 @@ position:absolute;left:{{ $opdate_x }}px;top:{{ $opdate_y }}px;}
 <pre><div id="cgodescp">{{ $mawb->cgodescp }}</div></pre>
 <div id="cbm">{{ $cbm }}</div>
 <div id="operator">{{ $mawb->operator }}</div>
-<div id="opdate">{{ $opdate) }}</div>
+<div id="opdate">{{ $opdate }}</div>
 </body>
 </html>
