@@ -56,13 +56,12 @@ Route::get('mawb/del/{mawb}', 'MawbController@delete')->name('mawb_del');
 Route::get('manifest', 'ManifestController@search');
 // 清单信息
 Route::get('manifest/view/{mawb}', 'ManifestController@show')->name('manifest');
-// 清单打印
-Route::get('manifest/print', 'ManifestController@print');
+// 导出清单
+Route::get('manifest/export/{mawb}', 'ManifestController@export')->name('manifest_export');
 
 // 打印单证
 Route::get('print/hawb/{hawb}', 'PrintController@printHawb')->name('print_hawb');
 Route::get('print/mawb/{mawb}', 'PrintController@printMawb')->name('print_mawb');
-Route::get('print/manifest/{mawb}', 'PrintController@printMani')->name('print_mani');
 
 // 货量统计（按日期范围）
 Route::get('report/daily', 'ReportController@daily');

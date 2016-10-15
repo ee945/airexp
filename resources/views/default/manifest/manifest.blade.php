@@ -58,6 +58,10 @@
             <td style="padding:3px 5px;" colspan=6></td>
           </tr>
         </table>
+        <div class="text-center" style="width:880px;padding:10px 0px;">
+          <a href="{{ route('manifest_export',['mawb'=>$hawb_first->mawb])}}" target="_blank" type="button" class="btn btn-primary" style="width:80px;margin-left: 20px;">导出</a>
+          <a href="javascript:alert('ok');" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
+        </div>
       </div>
     </div>
   </div>
