@@ -77,7 +77,7 @@ class CreateHawbTable extends Migration
             $table->string('agentabbr');
             // 添加时间
             $table->datetime('regtime');
-            
+
             $table->timestamps();
         });
     }
