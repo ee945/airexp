@@ -107,3 +107,7 @@ Route::post('user/edit', 'UserController@edit');
 Route::post('user/del', 'UserController@del');
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
