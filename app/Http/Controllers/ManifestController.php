@@ -10,6 +10,11 @@ use Excel;
 
 class ManifestController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function show($mawb)
     {
     	# 预览清单

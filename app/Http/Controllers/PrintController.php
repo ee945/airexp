@@ -10,6 +10,10 @@ use App\Mawb;
 
 class PrintController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function printHawb($hawb)
     {

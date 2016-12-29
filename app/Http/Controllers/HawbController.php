@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Http\Requests\CreateHawbRequest;
 use App\Http\Requests\UpdateHawbRequest;
@@ -11,9 +11,13 @@ use App\Hawb;
 
 class HawbController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-	public function lists(Request $request)
-	{
+    public function lists(Request $request)
+    {
 		## 显示分单列表
         $title = "分单列表";
 

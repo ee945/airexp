@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -35,5 +36,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest', ['except' => 'logout']);
+    }
+
+    public function username()
+    {
+        return 'name';
+    }
+
+    // protected function validateLogin(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'name' => 'required|in:e', 'password' => 'required',
+    //     ]);
+    // }
+
+    protected function credentials(Request $request)
+    {
+        return array_merge($request->only('name', 'password'),['level' => '1']);
     }
 }

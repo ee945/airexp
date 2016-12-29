@@ -9,6 +9,10 @@ use App\Seller;
 
 class SellerController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public function getSeller($forward)
     {
