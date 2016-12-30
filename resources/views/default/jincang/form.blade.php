@@ -10,7 +10,7 @@
           <strong>修改成功！</strong>
         </div>
         @endif
-        <table class="table text-left" style="width:100%;">
+        <table class="table text-left" style="width:90%;margin: 0 auto;">
           <col span="8" />
           <tr>
             <td style="width:15%;">{!! Form::label('regdate', '托运日期: ') !!}</td>

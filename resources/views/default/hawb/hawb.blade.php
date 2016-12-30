@@ -25,7 +25,7 @@
           </div>
         </div>
         @endif
-        <table class="mawbtab" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+        <table class="mawbtab" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin:0 auto">
           <colgroup>
             <col width="220px" />
             <col width="220px" />

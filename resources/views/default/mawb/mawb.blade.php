@@ -9,14 +9,14 @@
         </style>
         {!! Form::model($mawb) !!}
         @if(isset($_GET['save']))
-        <div class="alert alert-success text-center" style="width:880px;padding:8px 0px;margin-bottom:15px" role="alert">
+        <div class="alert alert-success text-center" style="width:880px;margin:0px auto 10px auto" role="alert">
           <strong>保存成功！</strong>
-          <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
+          <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="margin-left: 20px;">打印</a>
         </div>
         @endif
         @if($errors->any())
-        <div class="alert alert-danger text-left" style="width:880px;padding-bottom: 5px;margin-bottom:15px" role="alert">
-          <div style="margin-left:auto;margin-right:auto;">
+        <div class="alert alert-danger text-left" style="width:880px;padding-bottom: 5px;margin:0px auto 15px auto" role="alert">
+          <div style="margin:0 auto;">
             <ul>
               @foreach ($errors->all() as $error)
               <li><strong>{{ $error }}</strong></li>
@@ -25,7 +25,7 @@
           </div>
         </div>
         @endif
-        <table class="mawbtab" border="1" cellspacing="0" cellpadding="0" style="font-size:12px;border-collapse:collapse">
+        <table class="mawbtab" border="1" cellspacing="0" cellpadding="0" style="font-size:12px;border-collapse:collapse;margin:0 auto">
           <colgroup>
             <col width="220px" />
             <col width="220px" />
@@ -318,12 +318,12 @@
                 <tr align="center">
                   <td height="25" colspan="2">&nbsp;</td>
                   <td colspan="2">&nbsp;</td>
-                  </tr>
+                </tr>
               </table>
-              </td>
-            </tr>
-          </table>
-        <div class="text-center" style="width:880px;padding:10px 0px;">
+            </td>
+          </tr>
+        </table>
+        <div class="text-center" style="padding:10px 0px;">
           {!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:80px;']) !!}
           <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
         </div>

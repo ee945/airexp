@@ -7,17 +7,17 @@
         {!! Form::open() !!}
         @if(isset($del))
           @if($del=="yes")
-          <div class="alert alert-warning" style="padding:8px 15px;margin-bottom:10px" role="alert">
+          <div class="alert alert-warning" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
             <strong>删除成功: &nbsp;{{ $delno }}&nbsp;已删除</strong>
           </div>
           @elseif($del=="no")
-          <div class="alert alert-danger" style="padding:8px 15px;margin-bottom:10px" role="alert">
+          <div class="alert alert-danger" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
             <strong>删除失败: &nbsp;{{ $delno }}&nbsp;未找到</strong>
           </div>
           @endif
         @endif
         @if(isset($addno))
-          <div class="alert alert-success" style="padding:8px 15px;margin-bottom:10px" role="alert">
+          <div class="alert alert-success" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
             <strong>输入成功: &nbsp;<a href="{{ route('jincang_view',['jcno'=>$addno])}}">{{ $addno }}</a></strong>
           </div>
         @endif

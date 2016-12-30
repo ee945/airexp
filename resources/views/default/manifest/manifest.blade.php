@@ -11,7 +11,7 @@
           .mani {width:960px;font-size:12px;}
           .mani tr td{font-family:宋体;padding:3px 5px;}
         </style>
-        <table class="mani" border="1">
+        <table class="mani" border="1" style="margin: 0 auto">
           <tr>
             <td width="25%" align="center">Air Freight Agent</td>
             <td width="15%" align="center">Master AWB No.</td>
@@ -30,7 +30,7 @@
           </tr>
         </table>
         <br />
-        <table class="mani" border="1">
+        <table class="mani" border="1" style="margin: 0 auto">
           <tr>
             <td width="96px"> Hawb No.</td>
             <td width="48px"> No. of Pkg</td>
@@ -62,7 +62,7 @@
             <td colspan=6></td>
           </tr>
         </table>
-        <div class="text-center" style="width:880px;padding:10px 0px;">
+        <div class="text-center" style="padding:10px 0px;">
           <a href="{{ route('manifest_export',['mawb'=>$hawb_first->mawb])}}" target="_blank" type="button" class="btn btn-primary" style="width:80px;margin-left: 20px;">导出</a>
           <a href="javascript:alert('ok');" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
         </div>

@@ -13,8 +13,20 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="{{ url('/') }}">首页</a></li>
-            <li><a href="{{ route('hawb_add') }}">分单输入</a></li>
-            <li><a href="{{ route('hawb_list') }}">分单列表</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">进仓编号<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('jincang_add') }}">进仓登记</a></li>
+                <li><a href="{{ route('jincang_list') }}">进仓列表</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">分单操作<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('hawb_add') }}">分单输入</a></li>
+                <li><a href="{{ route('hawb_list') }}">分单列表</a></li>
+              </ul>
+            </li>
             <li><a href="{{ route('mawb_list') }}">总单列表</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">统计报表<span class="caret"></span></a>
