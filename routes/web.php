@@ -28,6 +28,19 @@ Route::get('get/hconsignee/{consigneecode}', 'AddrController@getHConsignee');
 Route::get('get/hnotify/{notifycode}', 'AddrController@getHNotify');
 Route::get('get/mconsignee/{oversea}', 'AddrController@getMConsignee');
 
+
+// 进仓列表
+Route::any('jincang', function(){return redirect(route('jincang_list'));});
+Route::any('jincang/list', 'JincangController@lists')->name('jincang_list');
+// 进仓信息（查看/修改）
+Route::get('jincang/view/{jcno}', 'JincangController@show')->name('jincang_view');
+Route::post('jincang/view/{jcno}', 'JincangController@update');
+// 进仓输入（输入/提交）
+Route::get('jincang/add', 'JincangController@add')->name('jincang_add');
+Route::post('jincang/add', 'JincangController@create');
+// 进仓删除
+Route::get('jincang/del/{jcno}', 'JincangController@delete')->name('jincang_del');
+
 // 分单列表
 Route::any('hawb', function(){return redirect(route('hawb_list'));});
 Route::any('hawb/list', 'HawbController@lists')->name('hawb_list');
