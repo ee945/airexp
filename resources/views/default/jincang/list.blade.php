@@ -21,25 +21,25 @@
             <strong>输入成功: &nbsp;<a href="{{ route('jincang_view',['jcno'=>$addno])}}">{{ $addno }}</a></strong>
           </div>
         @endif
-        <table class="table table-condensed table-responsive" style="margin-bottom: 2px;">
+        <table class="table table-condensed table-responsive" style="width:90%;margin:2px auto;">
           <tr>
             <td width=15%>
               {!! Form::label('search_jcno', '进仓编号: ') !!}
               {!! Form::text('search_jcno',isset($search_jcno)?$search_jcno:null,['size'=>'8']) !!}
             </td>
-            <td width=15%>
+            <td width=12%>
               {!! Form::label('search_dest', '目的港: ') !!}
-              {!! Form::text('search_dest',isset($search_dest)?$search_dest:null,['size'=>'6']) !!}
+              {!! Form::text('search_dest',isset($search_dest)?$search_dest:null,['size'=>'5']) !!}
             </td>
-            <td width=12%>
+            <td width=10%>
               {!! Form::label('search_forward', '货源: ') !!}
-              {!! Form::text('search_forward',isset($search_forward)?$search_forward:null,['size'=>'6']) !!}
+              {!! Form::text('search_forward',isset($search_forward)?$search_forward:null,['size'=>'5']) !!}
             </td>
-            <td width=12%>
+            <td width=11%>
               {!! Form::label('search_client', '托运人: ') !!}
-              {!! Form::text('search_client',isset($search_client)?$search_client:null,['size'=>'6']) !!}
+              {!! Form::text('search_client',isset($search_client)?$search_client:null,['size'=>'5']) !!}
             </td>
-            <td width=16%>
+            <td width=15%>
               {!! Form::label('search_cargodata', '货物信息: ') !!}
               {!! Form::text('search_cargodata',isset($search_cargodata)?$search_cargodata:null,['size'=>'8']) !!}
             </td>
@@ -49,7 +49,7 @@
               {!! Form::label('search_fltend','-') !!}
               {!! Form::text('search_fltend',isset($search_fltend)?$search_fltend:null,['size'=>'8']) !!}
             </td>
-            <td class="text-center" width=10%>{!! Form::submit('查询') !!}</td>
+            <td class="text-center" width=6%>{!! Form::submit('查询') !!}</td>
           </tr>
           <tr>
             <td>
@@ -58,15 +58,15 @@
             </td>
             <td>
               {!! Form::label('search_remark', "备注: ") !!}
-              {!! Form::text('search_remark',isset($search_remark)?$search_remark:null,['size'=>'8']) !!}
+              {!! Form::text('search_remark',isset($search_remark)?$search_remark:null,['size'=>'7']) !!}
             </td>
             <td>
               {!! Form::label('search_factory', '厂家: ') !!}
-              {!! Form::text('search_factory',isset($search_factory)?$search_factory:null,['size'=>'6']) !!}
+              {!! Form::text('search_factory',isset($search_factory)?$search_factory:null,['size'=>'5']) !!}
             </td>
             <td>
               {!! Form::label('search_carrier', '承运人: ') !!}
-              {!! Form::text('search_carrier',isset($search_carrier)?$search_carrier:null,['size'=>'6']) !!}
+              {!! Form::text('search_carrier',isset($search_carrier)?$search_carrier:null,['size'=>'5']) !!}
             </td>
             <td>
               {!! Form::label('search_delivery', '交货要求: ') !!}
@@ -86,18 +86,21 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <table class="table table-striped table-hover table-bordered table-condensed table-responsive" style="margin-bottom: 0;">
+        <table class="table table-striped table-hover table-bordered table-condensed table-responsive" style="width:90%;margin: 0 auto;">
           <thead>
             <tr>
-              <th class="text-center" width=7.8%>进仓编号</th>
-              <th class="text-center" width=4.8%>目的港</th>
-              <th class="text-center" width=8.1%>航班日期</th>
-              <th class="text-center" width=6.1%>货源</th>
-              <th class="text-center" width=4.8%>托运人</th>
-              <th class="text-center" width=8.4%>生产单位</th>
-              <th class="text-center" width=4.8%>承运人</th>
-              <th class="text-center" width=8.1%>托运日期</th>
-              <th class="text-center"></th>
+              <th class="text-center" width=8%>进仓编号</th>
+              <th class="text-center" width=6%>目的港</th>
+              <th class="text-center" width=8%>托运日期</th>
+              <th class="text-center" width=8%>预配日期</th>
+              <th class="text-center" width=6%>货源</th>
+              <th class="text-center" width=7%>托运人</th>
+              <th class="text-center" width=8%>生产单位</th>
+              <th class="text-center" width=7%>承运人</th>
+              <th class="text-center" width=12%>货物信息</th>
+              <th class="text-center" width=10%>交货要求</th>
+              <th class="text-center" width=10%>备注</th>
+              <th class="text-center" width=10%></th>
             </tr>
           </thead>
           <tbody>
@@ -105,13 +108,17 @@
             <tr>
               <td><a href="{{ route('jincang_view',['jcno'=>$jincang->jcno])}}">{{ $jincang->jcno }}</a></td>
               <td>{{ $jincang->dest }}</td>
+              <td class="text-center">{{ $jincang->regdate }}</td>
               <td class="text-center">{{ $jincang->fltdate }}</td>
               <td>{{ $jincang->forward }}</td>
               <td>{{ $jincang->client }}</td>
               <td>{{ $jincang->factory }}</td>
               <td>{{ $jincang->carrier }}</td>
-              <td class="text-center">{{ $jincang->regdate }}</td>
+              <td>{{ $jincang->cargodata }}</td>
+              <td>{{ $jincang->delivery }}</td>
+              <td>{{ $jincang->remark }}</td>
               <td class="text-center">
+                <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-warning">作废</a>
                 <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>

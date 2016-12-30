@@ -150,6 +150,9 @@ return [
         'sc' => '战险',
         'atplace' => '制单地',
         'operator' => '操作人',
+        'regdate' => '托运日期',
+        'jcno' => '进仓编号',
+        'client' => '托运人',
     ],
 
 ];

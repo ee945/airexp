@@ -85,6 +85,12 @@ class JincangController extends Controller
     public function create(Request $request)
     {
         ## 新建进仓单 post
+        // 自定义验证规则
+        $this->validate($request,[
+            'regdate' => 'required|date',
+            'jcno' => 'required|unique:exp_jincang,jcno|regex:/^[0-9A-Z-]{6,12}$/',
+            'forward'=>'required',
+        ]);
         Jincang::create($request->all());
         return redirect(route('jincang_list',['addno'=>$request->get('jcno')]));
     }
@@ -92,7 +98,12 @@ class JincangController extends Controller
     public function update(Request $request)
     {
         ## 更新进仓单 post
-        $jincang = $request->get('jcno');
+        $jcno = $request->get('jcno');
+        // 自定义验证规则
+        $this->validate($request,[
+            'regdate' => 'required|date',
+            'forward'=>'required',
+        ]);
         // 判断执行结果，并提示更新成功+返回列表，否则直接返回列表
         $query = Jincang::where('jcno',$jcno)->update($request->except(['_token','forwardcode','factorycode']));
         if($query=='1'){
@@ -108,7 +119,7 @@ class JincangController extends Controller
         $res = Jincang::where('jcno',$jcno)->first();
         // 判断查询结果，找到则执行删除，并提示删除成功+返回列表，否则直接返回列表
         if($res){
-            jcno::where('jcno',$jcno)->delete();
+            Jincang::where('jcno',$jcno)->delete();
             return redirect(route('jincang_list',['del'=>'yes','delno'=>$jcno]));
         }else{
             return redirect(route('jincang_list',['del'=>'no','delno'=>$jcno]));
