@@ -31,6 +31,11 @@ class ResetPasswordController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * 覆写引用类ResetsPasswords方法：
+     *
+     * 修改auth视图默认路径
+     */
     public function showResetForm(Request $request, $token = null)
     {
         return view(theme('auth.passwords.reset'))->with(

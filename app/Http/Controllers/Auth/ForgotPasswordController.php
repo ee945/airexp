@@ -30,6 +30,11 @@ class ForgotPasswordController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * 覆写引用类SendsPasswordResetEmails方法：
+     *
+     * 修改auth视图默认路径
+     */
     public function showLinkRequestForm()
     {
         return view(theme('auth.passwords.email'));

@@ -41,6 +41,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    /**
+     * 覆写引用类RegistersUsers方法：
+     *
+     * 修改auth视图默认路径
+     */
     public function showRegistrationForm()
     {
         return view(theme('auth.register'));
@@ -79,6 +84,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    /**
+     * 覆写引用类RegistersUsers方法：
+     *
+     * 修改guard()->login为logout，使用户新注册成功后先注销，防止新用户未激活认证直接登陆
+     */
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
