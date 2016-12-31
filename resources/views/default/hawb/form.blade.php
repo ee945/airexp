@@ -5,7 +5,7 @@
     <div class="row">
       <div class="col-md-12">
         {!! Form::open() !!}
-        @if(isset($_GET['update']))
+        @if(isset($_GET['update']) and !$errors->any())
         <div class="alert alert-success text-left" style="padding:8px 15px;width:90%;margin:0 auto 10px auto" role="alert">
           <strong>修改成功！</strong>
         </div>

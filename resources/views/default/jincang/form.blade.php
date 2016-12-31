@@ -5,8 +5,18 @@
     <div class="row">
       <div class="col-md-12">
         {!! Form::open() !!}
-        @if(isset($_GET['update']))
-        <div class="alert alert-success text-left" style="padding:8px 15px;margin-bottom:10px" role="alert">
+        @if($errors->any())
+        <div class="alert alert-danger text-left" style="width:90%;padding:5px 10px;margin:0 auto 10px auto" role="alert">
+          <div style="margin:0 auto">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+        @elseif(isset($_GET['update']))
+        <div class="alert alert-success text-left" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
           <strong>修改成功！</strong>
         </div>
         @endif
@@ -64,17 +74,6 @@
             <td>{!! Form::label('delivery', '交货要求: ') !!}</td>
             <td>{!! Form::textarea('delivery',isset($jincang->delivery)?$jincang->delivery:null,['rows'=>5,'cols'=>30]) !!}</td>
           </tr>
-          @if($errors->any())
-          <tr>
-            <td colspan="2">
-              <ul class="alert alert-danger" role="alert" style="padding:5px 20px;margin-bottom:5px;">
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-              </ul>
-            </td>
-          </tr>
-          @endif
           <tr>
             <td></td>
             <td>

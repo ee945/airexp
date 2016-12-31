@@ -8,14 +8,8 @@
           .mawbtab tr td{padding:5px;}
         </style>
         {!! Form::model($mawb) !!}
-        @if(isset($_GET['save']))
-        <div class="alert alert-success text-center" style="width:880px;margin:0px auto 10px auto" role="alert">
-          <strong>保存成功！</strong>
-          <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="margin-left: 20px;">打印</a>
-        </div>
-        @endif
         @if($errors->any())
-        <div class="alert alert-danger text-left" style="width:880px;padding-bottom: 5px;margin:0px auto 15px auto" role="alert">
+        <div class="alert alert-danger text-left" style="width:880px;padding-bottom: 5px;margin:0 auto 10px auto" role="alert">
           <div style="margin:0 auto;">
             <ul>
               @foreach ($errors->all() as $error)
@@ -23,6 +17,11 @@
               @endforeach
             </ul>
           </div>
+        </div>
+        @elseif(isset($_GET['save']))
+        <div class="alert alert-success text-center" style="width:880px;padding:8px 0px;margin:0 auto 10px auto" role="alert">
+          <strong>保存成功！</strong>
+          <a href="{{ route('print_mawb',['mawb'=>$mawb->mawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
         </div>
         @endif
         <table class="mawbtab" border="1" cellspacing="0" cellpadding="0" style="font-size:12px;border-collapse:collapse;margin:0 auto">
