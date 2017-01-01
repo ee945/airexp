@@ -13,13 +13,6 @@ class JincangController extends Controller
     {
         $this->middleware('auth');
     }
-    //
-    public function getJincang($jcno)
-    {
-    	# code...
-    	$jincang = Address::where('jcno',$jcno)->first();
-    	return $jincang;
-    }
 
     public function lists(Request $request)
     {
