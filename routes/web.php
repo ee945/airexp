@@ -93,13 +93,17 @@ Route::post('client/edit', 'ClientController@edit');
 Route::post('client/del', 'ClientController@del');
 
 // 地址列表
-Route::get('address/list', 'AddrController@lists');
-// 地址添加
-Route::get('address/add', 'AddrController@add');
-// 地址修改
-Route::post('address/edit', 'AddrController@edit');
-// 地址删除
-Route::post('address/del', 'AddrController@del');
+Route::any('address', function(){return redirect(route('address_list'));});
+Route::any('address/list', 'AddrController@lists')->name('address_list');
+// 查看或修改地址
+Route::get('address/view/{code}', 'AddrController@show')->name('address_view');
+Route::post('address/view/{code}', 'AddrController@update');
+// 添加地址（添加/提交）
+Route::get('address/add', 'AddrController@add')->name('address_add');
+Route::post('address/add', 'AddrController@create');
+// 删除地址
+Route::get('address/del/{code}', 'AddrController@delete')->name('address_del');
+
 
 // 目的港列表
 Route::get('port/list', 'PortController@lists');
