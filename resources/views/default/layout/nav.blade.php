@@ -41,9 +41,9 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">数据维护<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ route('address_list') }}">地址库</a></li>
-                <li><a href="#">目的港</a></li>
-                <li><a href="#">客户管理</a></li>
-                <li><a href="#">销售管理</a></li>
+                <li><a href="{{ route('port_list') }}">目的港</a></li>
+                <li><a href="{{ route('client_list') }}">客户管理</a></li>
+                <li><a href="{{ route('seller_list') }}">销售管理</a></li>
                 <li class="divider"></li>
                 <li class="dropdown-header">用户管理</li>
                 <li><a href="#">添加用户</a></li>

@@ -83,14 +83,6 @@ Route::get('report/month', 'ReportController@month');
 // 货源统计（按货源）
 Route::get('report/forward', 'ReportController@forward');
 
-// 客户列表
-Route::get('client/list', 'ClientController@lists');
-// 客户添加
-Route::get('client/add', 'ClientController@add');
-// 客户修改
-Route::post('client/edit', 'ClientController@edit');
-// 客户删除
-Route::post('client/del', 'ClientController@del');
 
 // 地址列表
 Route::any('address', function(){return redirect(route('address_list'));});
@@ -104,15 +96,41 @@ Route::post('address/add', 'AddrController@create');
 // 删除地址
 Route::get('address/del/{code}', 'AddrController@delete')->name('address_del');
 
-
 // 目的港列表
-Route::get('port/list', 'PortController@lists');
-// 目的港添加
-Route::get('port/add', 'PortController@add');
-// 目的港修改
-Route::post('port/edit', 'PortController@edit');
-// 目的港删除
-Route::post('port/del', 'PortController@del');
+Route::any('port', function(){return redirect(route('port_list'));});
+Route::any('port/list', 'PortController@lists')->name('port_list');
+// 查看或修改目的港
+Route::get('port/view/{code}', 'PortController@show')->name('port_view');
+Route::post('port/view/{code}', 'PortController@update');
+// 添加目的港（添加/提交）
+Route::get('port/add', 'PortController@add')->name('port_add');
+Route::post('port/add', 'PortController@create');
+// 删除目的港
+Route::get('port/del/{code}', 'PortController@delete')->name('port_del');
+
+// 客户列表
+Route::any('client', function(){return redirect(route('client_list'));});
+Route::any('client/list', 'ClientController@lists')->name('client_list');
+// 查看或修改客户
+Route::get('client/view/{code}', 'ClientController@show')->name('client_view');
+Route::post('client/view/{code}', 'ClientController@update');
+// 添加客户（添加/提交）
+Route::get('client/add', 'ClientController@add')->name('client_add');
+Route::post('client/add', 'ClientController@create');
+// 删除客户
+Route::get('client/del/{code}', 'ClientController@delete')->name('client_del');;
+
+// 销售列表
+Route::any('seller', function(){return redirect(route('seller_list'));});
+Route::any('seller/list', 'SellerController@lists')->name('seller_list');
+// 查看或修改销售
+Route::get('seller/view/{code}', 'SellerController@show')->name('seller_view');
+Route::post('seller/view/{code}', 'SellerController@update');
+// 添加销售（添加/提交）
+Route::get('seller/add', 'SellerController@add')->name('seller_add');
+Route::post('seller/add', 'SellerController@create');
+// 删除销售
+Route::get('seller/del/{code}', 'SellerController@delete')->name('seller_del');;
 
 // 用户列表
 Route::get('user/list', 'UserController@lists');

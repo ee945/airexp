@@ -9,12 +9,9 @@ class Seller extends Model
     //
     protected $table = "exp_seller";
     protected $fillable = [
-    	'code',
-    	'name',
-    	'zone',
-    	'm',
-    	'n',
-    	'q'
+    	'forward',
+    	'seller',
+    	'remark',
     ];
 
     protected $primaryKey = "id";

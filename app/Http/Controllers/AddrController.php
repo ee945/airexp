@@ -119,7 +119,7 @@ class AddrController extends Controller
 
     public function delete($code)
     {
-        ## 删除分单 get
+        ## 删除地址 get
         $res = Address::where('code',$code)->first();
         // 判断查询结果，找到则执行删除，并提示删除成功+返回列表，否则直接返回列表
         if($res){

@@ -25,15 +25,15 @@
           <tr>
             <td style="width:20%;">{!! Form::label('code', '代码: ') !!}</td>
             @if($title=="添加地址")
-            <td style="width:35%;">{!! Form::text('code',isset($addr->code)?$addr->code:null,['size'=>'16']) !!}</td>
+            <td style="width:45%;">{!! Form::text('code',isset($addr->code)?$addr->code:null,['size'=>'16','class' => 'form-control']) !!}</td>
             @elseif($title=="修改地址")
-            <td>{!! Form::text('code',isset($addr->code)?$addr->code:null,['size'=>'16','readonly'=>'readonly']) !!}</td>
+            <td style="width:45%;">{!! Form::text('code',isset($addr->code)?$addr->code:null,['size'=>'16','class' => 'form-control','readonly'=>'readonly']) !!}</td>
             @endif
-            <td style="width:45%;"></td>
+            <td style="width:35%;"></td>
           </tr>
           <tr>
-            <td>{!! Form::label('name', '目的港: ') !!}</td>
-            <td>{!! Form::text('name',isset($addr->name)?$addr->name:null,['size'=>'16']) !!}</td>
+            <td>{!! Form::label('name', '名称: ') !!}</td>
+            <td>{!! Form::text('name',isset($addr->name)?$addr->name:null,['size'=>'16','class' => 'form-control']) !!}</td>
             <td></td>
           </tr>
           <tr>
@@ -53,12 +53,12 @@
           </tr>
           <tr>
             <td>{!! Form::label('addr', '地址: ') !!}</td>
-            <td>{!! Form::textarea('addr',isset($addr->addr)?$addr->addr:null,['rows'=>6,'cols'=>50]) !!}</td>
+            <td>{!! Form::textarea('addr',isset($addr->addr)?$addr->addr:null,['rows'=>6,'cols'=>50,'class' => 'form-control']) !!}</td>
             <td></td>
           </tr>
           <tr>
             <td>{!! Form::label('remark', '备注: ') !!}</td>
-            <td>{!! Form::textarea('remark',isset($addr->remark)?$addr->remark:null,['rows'=>6,'cols'=>50]) !!}</td>
+            <td>{!! Form::textarea('remark',isset($addr->remark)?$addr->remark:null,['rows'=>6,'cols'=>50,'class' => 'form-control']) !!}</td>
             <td></td>
           </tr>
           <tr>

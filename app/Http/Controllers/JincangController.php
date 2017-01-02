@@ -108,7 +108,7 @@ class JincangController extends Controller
 
     public function delete($jcno)
     {
-        ## 删除分单 get
+        ## 删除进仓编号 get
         $res = Jincang::where('jcno',$jcno)->first();
         // 判断查询结果，找到则执行删除，并提示删除成功+返回列表，否则直接返回列表
         if($res){

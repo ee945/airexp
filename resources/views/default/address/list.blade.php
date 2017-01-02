@@ -75,7 +75,7 @@
               {!! Form::text('perpage',isset($perpage)?$perpage:20,['size'=>'4','class' => 'form-control']) !!}
             </td>
             <td colspan="2">
-              <button type="button" onClick="location.href='{!! route('address_add') !!}'" class="form-control btn-primary">添加新地址</button>
+              <button type="button" onClick="location.href='{!! route('address_add') !!}'" class="form-control btn-primary">添加地址</button>
             </td>
           </tr>
         </table>
