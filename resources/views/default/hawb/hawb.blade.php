@@ -33,7 +33,7 @@
           </colgroup>
           <tr>
             <td colspan="2" height="20" style="font-size:20px;">MAWB <span style="color:#000000;font-size:20px;">{!! $hawb->mawb !!}</span></td>
-            <td colspan="2" height="20" align="right" style="font-size:20px;">HAWB YH - <span style="color:#000000;font-size:20px;">{!! Form::text('hawb',$hawb->hawb,['hidden'=>'hidden']) !!}{!! $hawb->hawb !!}</span></td>
+            <td colspan="2" height="20" align="right" style="font-size:20px;">HAWB  <span style="color:#000000;font-size:20px;">{!! env('CONF_HAWB_PREFIX') !!}{!! Form::text('hawb',$hawb->hawb,['hidden'=>'hidden']) !!}{!! $hawb->hawb !!}</span></td>
           </tr>
           <tr >
             <td colspan="2" valign="top">Shipper's Name and Address
@@ -286,7 +286,7 @@
                     <tr>
                       <td height="15" colspan="2" align="center">Charges at Dest</td>
                       <td colspan="2" align="center">Total Collect Charges</td>
-                      <td rowspan="2" align="right" style="font-size:20px;">HAWB YH - <span style="color:#000000;font-size:20px;">{!! $hawb->hawb !!}</span>&nbsp;</td>
+                      <td rowspan="2" align="right" style="font-size:20px;">HAWB  <span style="color:#000000;font-size:20px;">{!! env('CONF_HAWB_PREFIX') !!}{!! $hawb->hawb !!}</span>&nbsp;</td>
                     </tr>
                     <tr align="center">
                       <td height="15" colspan="2">&nbsp;</td>

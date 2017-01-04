@@ -44,7 +44,7 @@
           </tr>
           @foreach($hawbs as $hawb)
           <tr>
-            <td>{{ "YH-".$hawb->hawb }}</td>
+            <td>{!! env('CONF_HAWB_PREFIX') !!}{{ $hawb->hawb }}</td>
             <td>{{ $hawb->num }}</td>
             <td>{{ $hawb->gw }}</td>
             <td>{{ substr($hawb->cgodescp,0,stripos($hawb->cgodescp, "\n")) }}</td>

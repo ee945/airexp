@@ -71,8 +71,8 @@ position:absolute;left:{{ $agent_x }}px;top:{{ $agent_y }}px;}
 </head>
 <body>
 <div id="mawb">{{ $hawb->mawb }}</div>
-<div id="hawb">{{ $hawb->hawb }}</div>
-<div id="hawbfoot">{{ $hawb->hawb }}</div>
+<div id="hawb">{!! env('CONF_HAWB_PREFIX') !!}{{ $hawb->hawb }}</div>
+<div id="hawbfoot">{!! env('CONF_HAWB_PREFIX') !!}{{ $hawb->hawb }}</div>
 <pre><div id="shipper">{{ $hawb->shipper }}</div></pre>
 <pre><div id="consignee">{{ $hawb->consignee }}</div></pre>
 <pre><div id="notify">{{ $hawb->notify }}</div></pre>
