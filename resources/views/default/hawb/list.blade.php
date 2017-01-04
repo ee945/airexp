@@ -58,7 +58,7 @@
           <tr>
             <td colspan="4">
               <div class="btn-group-sm">
-                <button class="btn btn-default" type="button">TOTAL:</button>
+                <button class="btn btn-default" type="button">TOTAL ( <strong>{{ $total_count }}</strong> ):</button>
                 <button class="btn btn-success" type="button">NUM &nbsp;<span class="badge">{{ $total_num }}</span></button>
                 <button class="btn btn-primary" type="button">GW &nbsp;<span class="badge">{{ $total_gw }}</span></button>
                 <button class="btn btn-info" type="button">CW &nbsp;<span class="badge">{{ $total_cw }}</span></button>

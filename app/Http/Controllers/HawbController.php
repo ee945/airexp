@@ -53,12 +53,13 @@ class HawbController extends Controller
         // 按perpage值进行分页
         $hawbs = $query->paginate(isset($search['perpage'])?$search['perpage']:20);
         // 统计当前显示的总和 - 件数、实际重量、收费重量、体积
+        $total_count = $hawbs->count('hawb');
         $total_num = $hawbs->sum('num');
         $total_gw = $hawbs->sum('gw');
         $total_cw = $hawbs->sum('cw');
         $total_cbm = $hawbs->sum('cbm');
         // 返回分单列表视图 - 传入参数（分单记录集合、网页title、统计总和，以及查询条件）
-		return view(theme("hawb.list"),compact('hawbs','title','total_num','total_gw','total_cw','total_cbm'))->with($search);
+		return view(theme("hawb.list"),compact('hawbs','title','total_count','total_num','total_gw','total_cw','total_cbm'))->with($search);
 	}
 
     public function show($hawb)
