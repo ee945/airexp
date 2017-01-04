@@ -309,8 +309,8 @@
   <script src="/js/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      $(":text").attr("style",'text-transform:uppercase;');
-      $("textarea").attr("style",'text-transform:uppercase;');
+      $(":text").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("textarea").attr("onkeyup",'this.value=this.value.toUpperCase()');
     });
     //输入体积自动处理收费重量
     $("input[name='cbm']").blur(function(){

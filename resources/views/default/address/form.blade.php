@@ -76,8 +76,8 @@
   <script src="/js/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      $(":text").attr("onkeyup",'this.value=this.value.toUpperCase()');
-      $("textarea").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#code").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#addr").attr("onkeyup",'this.value=this.value.toUpperCase()');
     });
   </script>
 @stop

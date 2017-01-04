@@ -111,7 +111,7 @@
               <a href="{{ route('hawb_print',['hawb'=>$hawb->hawb])}}" type="button" class="btn btn-success">打印</a>
               @endif
             </td>
-            <td></td>
+            <td><button type="button" onClick="location.href='{!! route('hawb_list') !!}'" class="form-control btn-danger" style="width:80px;">返回</button></td>
             <td></td>
             <td></td>
             <td></td>
@@ -125,8 +125,13 @@
   <script src="/js/jquery.min.js"></script>
   <script>
     $(document).ready(function(){
-      $(":text").attr("onkeyup",'this.value=this.value.toUpperCase()');
-      $("textarea").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#dest").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#desti").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#fltno").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#forwardcode").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#factorycode").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#carrier").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#paymt").attr("onkeyup",'this.value=this.value.toUpperCase()');
     });
     //输入体积自动处理收费重量
     $("input[name='cbm']").blur(function(){

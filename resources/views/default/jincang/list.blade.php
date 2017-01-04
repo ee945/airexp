@@ -91,16 +91,16 @@
             <tr>
               <th class="text-center" width=8%>进仓编号</th>
               <th class="text-center" width=6%>目的港</th>
-              <th class="text-center" width=8%>托运日期</th>
-              <th class="text-center" width=8%>预配日期</th>
-              <th class="text-center" width=6%>货源</th>
+              <th class="text-center" width=9%>托运日期</th>
+              <th class="text-center" width=9%>预配日期</th>
+              <th class="text-center" width=7%>货源</th>
               <th class="text-center" width=7%>托运人</th>
-              <th class="text-center" width=8%>生产单位</th>
-              <th class="text-center" width=7%>承运人</th>
+              <th class="text-center" width=9%>生产单位</th>
+              <th class="text-center" width=6%>承运人</th>
               <th class="text-center" width=12%>货物信息</th>
               <th class="text-center" width=10%>交货要求</th>
-              <th class="text-center" width=10%>备注</th>
-              <th class="text-center" width=10%></th>
+              <th class="text-center" width=11%>备注</th>
+              <th class="text-center" width=6%></th>
             </tr>
           </thead>
           <tbody>
@@ -118,7 +118,6 @@
               <td>{{ $jincang->delivery }}</td>
               <td>{{ $jincang->remark }}</td>
               <td class="text-center">
-                <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-warning">作废</a>
                 <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
