@@ -24,7 +24,7 @@ class HawbController extends Controller
         // 获取表单搜索条件
         $search = $request->all();
         // 获取全部分单记录，按航班日期、添加时间排序
-        $query = Hawb::orderBy('fltdate','desc')->orderBy('regtime','desc');
+        $query = Hawb::orderBy('fltdate','desc')->orderBy('regtime','desc')->orderBy('created_at','desc');
         // 逐一判断是否有筛选条件
         if(isset($search['search_hawb'])&&$search['search_hawb']!="")
             $query->where('hawb','like','%'.$search['search_hawb'].'%');

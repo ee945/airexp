@@ -155,7 +155,7 @@ class ManifestController extends Controller
                     $cgodescp = substr($hawb->cgodescp,0,stripos($hawb->cgodescp, "\n")-1);
                     // dd($shipper);
                     $sheet->appendRow(array(
-                        'YH-'.$hawb->hawb,
+                        env('CONF_HAWB_PREFIX').$hawb->hawb,
                         $hawb->num,
                         $hawb->gw,
                         $cgodescp,
