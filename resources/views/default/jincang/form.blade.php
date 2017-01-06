@@ -78,6 +78,7 @@
             <td></td>
             <td>
               {!! Form::submit('保存',['class'=>'btn btn-primary form-control','style'=>'width:80px;']) !!}
+              <button type="button" onClick="location.href='{!! route('jincang_list') !!}'" class="form-control btn-danger" style="width:80px;float:right">返回</button>
             </td>
             <td></td>
             <td></td>
@@ -92,10 +93,13 @@
 
   <script src="/js/jquery.min.js"></script>
   <script>
-    // $(document).ready(function(){
-    //   $(":text").attr("onkeyup",'this.value=this.value.toUpperCase()');
-    //   $("textarea").attr("onkeyup",'this.value=this.value.toUpperCase()');
-    // });
+    $(document).ready(function(){
+      $("#jcno").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#dest").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#forwardcode").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#factorycode").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#carrier").attr("onkeyup",'this.value=this.value.toUpperCase()');
+    });
 
     //输入目的港三字代码自动显示补全机场全称
     $("input[name='dest']").blur(function(){

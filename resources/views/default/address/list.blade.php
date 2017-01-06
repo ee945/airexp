@@ -87,11 +87,11 @@
         <table class="table table-striped table-hover table-bordered table-condensed table-responsive" style="width:90%;margin: 0 auto;">
           <thead>
             <tr>
-              <th class="text-center" width=10%>代码</th>
-              <th class="text-center" width=15%>名称</th>
-              <th class="text-center" width=15%>分类</th>
-              <th class="text-center" width=40%>地址</th>
-              <th class="text-center" width=15%>备注</th>
+              <th class="text-center" width=11%>代码</th>
+              <th class="text-center" width=13%>名称</th>
+              <th class="text-center" width=10%>分类</th>
+              <th class="text-center" width=43%>地址</th>
+              <th class="text-center" width=18%>备注</th>
               <th class="text-center" width=5%></th>
             </tr>
           </thead>
