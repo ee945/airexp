@@ -47,7 +47,7 @@
             <td>{!! env('CONF_HAWB_PREFIX') !!}{{ $hawb->hawb }}</td>
             <td>{{ $hawb->num }}</td>
             <td>{{ $hawb->gw }}</td>
-            <td>{{ substr($hawb->cgodescp,0,stripos($hawb->cgodescp, "\n")) }}</td>
+            <td>{{ explode("\n", $hawb->cgodescp)[0] }}</td>
             <td>SHA</td>
             <td>{{ $hawb->dest }}</td>
             <td>{{ str_replace('\n',"\n",$hawb->shipper) }}</td>

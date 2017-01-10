@@ -43,7 +43,7 @@ class ManifestController extends Controller
         $data['mani_num'] = $hawbs->sum('num');
         $data['mani_gw'] = $hawbs->sum('gw');
 
-        $data['mani_oversea'] = "THE SUMITOMO WAREHOUSE CO.,LTD.";
+        $data['mani_oversea'] = "";
 
         // 创建清单excel文件 - 文件名“manifest-{总单号}”
         Excel::create('manifest-'.$mawb,function($excel) use($data,$hawbs){
@@ -152,8 +152,7 @@ class ManifestController extends Controller
                 foreach ($hawbs as $hawb) {
                     $shipper = $hawb->shipper;
                     $consignee = $hawb->consignee;
-                    $cgodescp = substr($hawb->cgodescp,0,stripos($hawb->cgodescp, "\n")-1);
-                    // dd($shipper);
+                    $cgodescp = explode("\n", $hawb->cgodescp)[0];
                     $sheet->appendRow(array(
                         env('CONF_HAWB_PREFIX').$hawb->hawb,
                         $hawb->num,
