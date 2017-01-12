@@ -1,0 +1,85 @@
+body {
+    align: center;
+}
+
+/*airchina*/
+.tableE {
+    margin:20px;
+    border-left:1px solid #E4E4E4;
+    border-top:1px solid #E4E4E4;
+    width:918px;
+    table-layout:auto;
+    border-collapse:collapse;
+    font-size:12px;
+    font-family:Arial,Helvetica,sans-serif;
+}
+.tableE td,.tableE th {
+    border-bottom:1px solid #E4E4E4;
+    border-right:1px solid #E4E4E4;
+    padding:6px 10px;
+}
+.tableEth {
+    background-color:#F4F4F4;
+}
+#tbcargostatus th,#tbcargostatus tbody tr td {
+    text-align:center;
+}
+.ismtrbg {
+    background-color:#DCF3F3;
+}
+#tbtrackingmaintitle,#tbtrackingmaintitle td {
+    border:none;
+}
+#tbtrackingmaintitle {
+    margin-bottom:-20px;
+    border-bottom:1px solid #DDDDDD;
+}
+#tbtrackingmaintitle tbody tr td {
+    font-weight:bold;
+    font-size:16px;
+    color:#686868;
+}
+#tableCargo {
+    border:none;
+    margin-top:25px;
+    margin-bottom:6px;
+}
+#tableCargo td {
+    border:none;
+}
+#tableCargo td div {
+    display:inline;
+    float:left;
+}
+#tableCargo .weight {
+    font-weight:bold;
+    width:90px;
+    text-align:center;
+    color:#686868;
+}
+#tableCargo .pcs {
+    font-weight:bold;
+    width:45px;
+    text-align:center;
+    color:#686868;
+}
+#tableCargo .curCargoStatus {
+    font-weight:bold;
+    font-size:17px;
+    color:#EC892A;
+}
+
+/*ce-air*/
+table {
+ font-family: Arial,Verdana;
+ font-size: 12px;
+ line-height:16px
+}
+#result {
+    background-color:#FCFCFC
+}
+
+/*maskargo*/
+.table-content {
+    width:auto!important;
+}

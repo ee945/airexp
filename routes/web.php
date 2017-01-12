@@ -139,6 +139,16 @@ Route::post('user/edit', 'UserController@edit');
 // 用户删除
 Route::post('user/del', 'UserController@del');
 
+// 货物追踪首页
+Route::get('track','TrackController@index')->name('track_index');
+// 航空公司官网货运追踪网址列表
+Route::get('track/airline','TrackController@airline');
+// 本系统内查询货物状态
+Route::get('track/status/{mawb}','TrackController@status');
+// 运抵报告及放行信息
+Route::get('track/arrival/{mawb}','TrackController@arrival');
+// 航班信息
+Route::get('track/flight/{mawb}','TrackController@flight');
 
 
 Auth::routes();
