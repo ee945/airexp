@@ -18,6 +18,7 @@
             <li><a href="{{ route('hawb_add') }}">分单输入</a></li>
             <li><a href="{{ route('hawb_list') }}">分单列表</a></li>
             <li><a href="{{ route('mawb_list') }}">总单列表</a></li>
+            <li><a href="{{ route('track_index') }}">货物追踪</a></li>
             {{-- <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">统计报表<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
