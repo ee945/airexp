@@ -2,25 +2,32 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Hawb;
+use Carbon\Carbon;
 
 class TrackController extends Controller
 {
     private $mawb3;
     private $mawb8;
 
-    //
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
     {
         # 货物追踪模块导航页
-        echo "Cargo track index page.";
+        $title = "货物追踪";
+        $hawb_today = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::today())->get();
+        $hawb_after1 = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::tomorrow())->get();
+        $hawb_before1 = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::yesterday())->get();
+        $hawb_before2 = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::yesterday()->subDay())->get();
+        return view(theme("track.track"),compact('hawb_today','hawb_after1','hawb_before1','hawb_before2','title'));
     }
 
     public function airline()
@@ -41,9 +48,9 @@ class TrackController extends Controller
         # 查运抵及放行（调用货站查询系统-pactl，东航物流）
         if($this->invalidMawb($mawb)){
             echo "<br>";
-        }elseif(in_array($this->mawb3, ['999','160','232'])){
+        }elseif(in_array($this->mawb3, ['999','160','232','738','043','406','065'])){
             $this->arrivalPactl();
-        }elseif(in_array($this->mawb3, ['112'])){
+        }elseif(in_array($this->mawb3, ['112','784','172','217','205','297','756','672'])){
             $this->arrivalCeAir();
         }else{
             echo "暂不支持查询 ".$this->mawb3." 运抵信息"."<br><br>";
