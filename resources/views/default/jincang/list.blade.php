@@ -124,7 +124,9 @@
             @endforeach
           </tbody>
         </table>
-        {{ $jincangs->render() }}
+        <div style="width: 90%;margin:0 auto;">
+          {{ $jincangs->render() }}
+        </div>
       </div>
     </div>
   </div> <!-- /container -->
