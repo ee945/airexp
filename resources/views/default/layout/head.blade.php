@@ -27,4 +27,8 @@
       <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+      .navbar .nav > li .dropdown-menu {margin: 0;}
+      .navbar .nav > li:hover .dropdown-menu {display: block;}
+    </style>
   </head>
