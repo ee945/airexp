@@ -22,6 +22,7 @@
         <div class="alert alert-success text-center" style="width:880px;padding:8px 0px;margin:0 auto 10px auto" role="alert">
           <strong>保存成功！</strong>
           <a href="{{ route('print_hawb',['hawb'=>$hawb->hawb])}}" target="_blank" type="button" class="btn btn-success" style="width:80px;margin-left: 20px;">打印</a>
+          <a href="{{ route('manifest',['hawb'=>$hawb->mawb])}}" type="button" class="btn btn-primary" style="width:80px;margin-left: 20px;">清单</a>
         </div>
         @endif
         <table class="mawbtab" border="1" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin:0 auto">
