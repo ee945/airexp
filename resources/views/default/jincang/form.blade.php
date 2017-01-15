@@ -137,7 +137,7 @@
 
     // 点击上次进仓编号，自动加1填充
     $("#last_jc").click(function(){
-      new_jcno = {{ $last_jcno }} + 1;
+      new_jcno = {{ isset($last_jcno)?$last_jcno:0 }} + 1;
       $("#jcno").val(new_jcno);
     });
   </script>
