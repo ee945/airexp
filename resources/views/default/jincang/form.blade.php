@@ -31,7 +31,7 @@
           <tr>
             <td>{!! Form::label('jcno', '进仓编号: ') !!}</td>
             @if($title=="进仓登记")
-            <td>{!! Form::text('jcno',isset($jincang->jcno)?$jincang->jcno:null,['size'=>'16']) !!}</td>
+            <td>{!! Form::text('jcno',isset($jincang->jcno)?$jincang->jcno:null,['size'=>'16']) !!} <span id="last_jc" style="color: #888;"> 上次：{{ $last_jcno }}</span></td>
             @elseif($title=="进仓修改")
             <td>{!! Form::text('jcno',isset($jincang->jcno)?$jincang->jcno:null,['size'=>'16','readonly'=>'readonly']) !!}</td>
             @endif
@@ -99,6 +99,7 @@
       $("#forwardcode").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#factorycode").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#carrier").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#jcno").focus();
     });
 
     //输入目的港三字代码自动显示补全机场全称
@@ -132,6 +133,12 @@
           $("input[name='factory']").val(json.name);
         });
       }
+    });
+
+    // 点击上次进仓编号，自动加1填充
+    $("#last_jc").click(function(){
+      new_jcno = {{ $last_jcno }} + 1;
+      $("#jcno").val(new_jcno);
     });
   </script>
 @stop

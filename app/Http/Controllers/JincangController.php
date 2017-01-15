@@ -72,7 +72,9 @@ class JincangController extends Controller
         ## 进仓登记输入
         $title = "进仓登记";
 
-        return view(theme("jincang.form"), compact('title'));
+        $jincang = Jincang::orderBy('id','desc')->first();
+        $last_jcno = $jincang->jcno;
+        return view(theme("jincang.form"), compact('title','last_jcno'));
     }
 
     public function create(Request $request)

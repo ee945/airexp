@@ -132,6 +132,7 @@
       $("#factorycode").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#carrier").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#paymt").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#hawb").focus();
     });
     //输入体积自动处理收费重量
     $("input[name='cbm']").blur(function(){
