@@ -7,6 +7,13 @@
         <table class="table table-striped table-hover table-bordered table-condensed table-responsive" style="margin:0 auto;width:90%">
           <thead>
             <tr>
+              <th colspan="8" style="font-size: 1.3em;">
+                <input type="text" id="search_mawb" placeholder="查询总单">
+                <a id="search_arrival" type="button" target="_blank" class="btn btn-success" style="width:80px;margin-left: 10px;">运抵</a>
+                <a id="search_flight" type="button" target="_blank" class="btn btn-primary" style="width:80px;margin-left: 10px;">航班</a>
+              </th>
+            </tr>
+            <tr>
               <th colspan="8" style="font-size: 1.5em;">明日航班</th>
             </tr>
             <tr>
@@ -137,6 +144,17 @@
       </div>
     </div>
   </div> <!-- /container -->
+  <script src="/js/jquery.min.js"></script>
   <script>
+    $("#search_arrival").click(function(){
+      mawb = $("#search_mawb").val();
+      if(mawb=="")return false;
+      $("#search_arrival").attr('href',"track/arrival/"+mawb);
+    });
+    $("#search_flight").click(function(){
+      mawb = $("#search_mawb").val();
+      if(mawb=="")return false;
+      $("#search_flight").attr('href',"track/flight/"+mawb);
+    });
   </script>
 @stop
