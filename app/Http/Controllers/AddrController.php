@@ -89,13 +89,19 @@ class AddrController extends Controller
         ## 新建地址 post
         // 自定义验证规则
         $this->validate($request,[
-            'code' => 'required|unique:exp_address,code',
+            'code' => 'required',
             'name' => 'required',
             'addr'=>'required',
             'cata'=>'required',
         ]);
-        Address::create($request->all());
-        return redirect(route('address_list',['addno'=>$request->get('code')]));
+        // 查找同类中是否已存在该地址代码
+        $newaddr = Address::where('cata',$request->get('cata'))->where('code',$request->get('code'))->first();
+        if(!empty($newaddr)){
+            echo "<script>alert('".$request->get('cata')." 已存在 ".$request->get('code')."');history.back(-1)</script>";
+        }else{
+            Address::create($request->all());
+            return redirect(route('address_list',['addno'=>$request->get('code')]));
+        }
     }
 
     public function update(Request $request)
