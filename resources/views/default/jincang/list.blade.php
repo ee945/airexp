@@ -21,6 +21,21 @@
             <strong>输入成功: &nbsp;<a href="{{ route('jincang_view',['jcno'=>$addno])}}">{{ $addno }}</a></strong>
           </div>
         @endif
+        @if(isset($status))
+          @if($status=="in")
+          <div class="alert alert-warning" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
+            <strong>操作成功 &nbsp;{{ $jcno }}&nbsp;已进仓</strong>
+          </div>
+          @elseif($status=="out")
+          <div class="alert alert-success" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
+            <strong>操作成功 &nbsp;{{ $jcno }}&nbsp;已出仓</strong>
+          </div>
+          @elseif($status=="no")
+          <div class="alert alert-danger" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
+            <strong>操作失败 &nbsp;{{ $jcno }}&nbsp;未找到</strong>
+          </div>
+          @endif
+        @endif
         <table class="table table-condensed table-responsive" style="width:90%;margin:2px auto;">
           <tr>
             <td width=15%>

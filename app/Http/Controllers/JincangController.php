@@ -120,4 +120,25 @@ class JincangController extends Controller
             return redirect(route('jincang_list',['del'=>'no','delno'=>$jcno]));
         }
     }
+
+    public function status($jcno)
+    {
+        ## 改变进仓状态 get
+        $res = Jincang::where('jcno',$jcno)->first();
+        // 判断查询结果，找到后判断并切换当前进仓状态，生成状态提示标签$status
+        if($res){
+            if($res->status==1){
+                $res->status=0;
+                $res->save();
+                $status="in";
+            }elseif($res->status==0){
+                $res->status=1;
+                $res->save();
+                $status="out";
+            }
+        }else{
+            $status="no";
+        }
+        return redirect(route('jincang_list',['status'=>$status,'jcno'=>$jcno]));
+    }
 }
