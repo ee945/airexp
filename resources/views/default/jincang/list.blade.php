@@ -97,19 +97,19 @@
               <th class="text-center" width=7%>托运人</th>
               <th class="text-center" width=9%>生产单位</th>
               <th class="text-center" width=6%>承运人</th>
-              <th class="text-center" width=12%>货物信息</th>
+              <th class="text-center" width=10%>货物信息</th>
               <th class="text-center" width=10%>交货要求</th>
-              <th class="text-center" width=11%>备注</th>
-              <th class="text-center" width=6%></th>
+              <th class="text-center" width=10%>备注</th>
+              <th class="text-center" width=10%></th>
             </tr>
           </thead>
           <tbody>
             @foreach($jincangs as $jincang)
-            <tr>
+            <tr {{$jincang->status==1?"style=background-color:#999;color:#fff":""}}>
               <td><a href="{{ route('jincang_view',['jcno'=>$jincang->jcno])}}">{{ $jincang->jcno }}</a></td>
               <td>{{ $jincang->dest }}</td>
-              <td class="text-center">{{ $jincang->regdate }}</td>
-              <td class="text-center">{{ $jincang->fltdate }}</td>
+              <td>{{ $jincang->regdate }}</td>
+              <td>{{ $jincang->fltdate }}</td>
               <td>{{ $jincang->forward }}</td>
               <td>{{ $jincang->client }}</td>
               <td>{{ $jincang->factory }}</td>
@@ -118,6 +118,7 @@
               <td>{{ $jincang->delivery }}</td>
               <td>{{ $jincang->remark }}</td>
               <td class="text-center">
+                <a href="{{ route('jincang_status',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('{{$jincang->status==1?"确定出仓":"重新进仓"}}&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs {{$jincang->status==1?"btn-warning":"btn-success"}}">{{$jincang->status==1?"出仓":"已出"}}</a>
                 <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>

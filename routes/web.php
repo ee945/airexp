@@ -38,6 +38,8 @@ Route::get('jincang/add', 'JincangController@add')->name('jincang_add');
 Route::post('jincang/add', 'JincangController@create');
 // 进仓删除
 Route::get('jincang/del/{jcno}', 'JincangController@delete')->name('jincang_del');
+// 进仓状态
+Route::get('jincang/status/{jcno}', 'JincangController@status')->name('jincang_status');
 
 // 分单列表
 Route::any('hawb', function(){return redirect(route('hawb_list'));});
