@@ -105,7 +105,7 @@
           </thead>
           <tbody>
             @foreach($jincangs as $jincang)
-            <tr {{$jincang->status==1?"style=background-color:#999;color:#fff":""}}>
+            <tr {{$jincang->status==1?"style=background-color:#aaa;color:#fff":""}}>
               <td><a href="{{ route('jincang_view',['jcno'=>$jincang->jcno])}}">{{ $jincang->jcno }}</a></td>
               <td>{{ $jincang->dest }}</td>
               <td>{{ $jincang->regdate }}</td>
@@ -118,7 +118,7 @@
               <td>{{ $jincang->delivery }}</td>
               <td>{{ $jincang->remark }}</td>
               <td class="text-center">
-                <a href="{{ route('jincang_status',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('{{$jincang->status==1?"确定出仓":"重新进仓"}}&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs {{$jincang->status==1?"btn-warning":"btn-success"}}">{{$jincang->status==1?"出仓":"已出"}}</a>
+                <a href="{{ route('jincang_status',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('{{$jincang->status==1?"重新进仓":"确定出仓"}}&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs {{$jincang->status==1?"btn-success":"btn-warning"}}">{{$jincang->status==1?"已出":"出仓"}}</a>
                 <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
