@@ -83,3 +83,55 @@ table {
 .table-content {
     width:auto!important;
 }
+
+/*UPS*/
+.brownbold {
+    color: #630;
+    font-weight: bold
+}
+
+.pi-h4 {
+    font-weight: bold
+}
+
+.pi-mA2-c,.pi-r1-rwo {
+    background-color: #fff
+}
+
+.pi-mA2-c-t-spc,.pi-mA2-c-b-spc {
+    background-color: #fff;
+    padding-bottom: 4px;
+    padding-top: 5px
+}
+
+.pi-mA2-t {
+    background-color: #963
+}
+
+.pi-m-pad {
+    padding-left: 10px;
+    padding-right: 10px
+}
+
+.pi-m-txt-title {
+    font-weight: bold;
+    color: #fff;
+    padding: 4px 10px
+}
+
+.pi-r1-t {
+    background-color: #ccc;
+    font-weight: bold
+}
+
+.pi-r1-line {
+    background-image: url(/img/1_ffffff.gif);
+    background-repeat: repeat-y;
+    vertical-align: top;
+    padding: 5px 10px 5px 11px
+}
+
+.pi-mA2-line,.pi-r1-rwe,.pi-r1-b {
+    background-color: #ccc
+}
+

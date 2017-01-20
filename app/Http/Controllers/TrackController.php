@@ -87,6 +87,8 @@ class TrackController extends Controller
             $this->flightCathayCacific();
         }elseif(in_array($this->mawb3, ['232'])){
             $this->flightMaskargo();
+        }elseif(in_array($this->mawb3, ['406'])){
+            $this->flightUPS();
         }else{
             echo "暂不支持直接查询 ".$this->mawb3." 运单"."<br><br>";
             echo "<a href=\"/track/airline\">航空公司官网货运追踪网址列表</a>";
@@ -178,6 +180,27 @@ class TrackController extends Controller
         echo "<link href=\"/css/track-flight.css\" rel=\"stylesheet\">";
         echo $mawbhead[0]."<br>";
         echo $mawbtitle[0];
+    }
+
+    private function flightUPS()
+    {
+        // 国航货运查询官网
+        $query_data = array('loc' => 'en_US','awbNum' => $this->mawb3.$this->mawb8,'track.x' => '29','track.y' => '7');
+        $query_data = http_build_query($query_data);
+        $http_data = array(
+            'http'=>array(
+                'method'=>"POST",
+                'header'=>"Content-type: application/x-www-form-urlencoded\r\n"."Content-length:".strlen($query_data)."\r\n",
+                'content' => $query_data)
+            );
+            $http_context = stream_context_create($http_data);
+            $search_res = file_get_contents("https://www.ups.com/actrack/track/submit", false, $http_context);
+
+        preg_match("/<!-- Begin Table: Formatting Table 4col -->.*<!-- End Table: Formatting Table 4col -->/sU", $search_res, $mawbstatus);
+        $ups_res = str_replace("/actrack/track", "https://www.ups.com/actrack/track", $mawbstatus[0]);
+        echo "<link href=\"/css/track-flight.css\" rel=\"stylesheet\">";
+        echo "<title>UPS货运查询</title>";
+        echo $ups_res;
     }
 
     private function invalidMawb($mawb)
