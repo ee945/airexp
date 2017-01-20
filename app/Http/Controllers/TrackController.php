@@ -27,7 +27,11 @@ class TrackController extends Controller
         $hawb_after1 = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::tomorrow())->get();
         $hawb_before1 = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::yesterday())->get();
         $hawb_before2 = Hawb::orderBy('fltdate','desc')->orderBy('hawb','desc')->where('fltdate',Carbon::yesterday()->subDay())->get();
-        return view(theme("track.track"),compact('hawb_today','hawb_after1','hawb_before1','hawb_before2','title'));
+        $data['today'] = Carbon::today()->format('m.d');
+        $data['after1'] = Carbon::tomorrow()->format('m.d');
+        $data['before1'] = Carbon::yesterday()->format('m.d');
+        $data['before2'] = Carbon::yesterday()->subDay()->format('m.d');
+        return view(theme("track.track"),compact('hawb_today','hawb_after1','hawb_before1','hawb_before2','title'))->with($data);
     }
 
     public function airline()
