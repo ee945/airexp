@@ -9,8 +9,8 @@
             <tr>
               <th colspan="7" style="font-size: 1.3em;">
                 <input type="text" id="search_mawb" placeholder="查询总单" style="width:50%">
-                <a id="search_arrival" type="button" target="_blank" class="btn btn-success" style="width:80px;margin-left: 10px;">运抵</a>
-                <a id="search_flight" type="button" target="_blank" class="btn btn-primary" style="width:80px;margin-left: 10px;">航班</a>
+                <a id="search_arrival" type="button" target="_blank" class="btn btn-success" style="width:70px;margin-left: 5px;">运抵</a>
+                <a id="search_flight" type="button" target="_blank" class="btn btn-primary" style="width:70px;margin-left: 5px;">航班</a>
               </th>
             </tr>
             <tr>
