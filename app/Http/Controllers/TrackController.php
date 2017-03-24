@@ -93,6 +93,8 @@ class TrackController extends Controller
             $this->flightMaskargo();
         }elseif(in_array($this->mawb3, ['406'])){
             $this->flightUPS();
+        }elseif(in_array($this->mawb3, ['235'])){
+            $this->flightTK();
         }else{
             echo "暂不支持直接查询 ".$this->mawb3." 运单"."<br><br>";
             echo "<a href=\"/track/airline\">航空公司官网货运追踪网址列表</a>";
@@ -188,7 +190,7 @@ class TrackController extends Controller
 
     private function flightUPS()
     {
-        // 国航货运查询官网
+        // UPS查询官网
         $query_data = array('loc' => 'en_US','awbNum' => $this->mawb3.$this->mawb8,'track.x' => '29','track.y' => '7');
         $query_data = http_build_query($query_data);
         $http_data = array(
@@ -205,6 +207,22 @@ class TrackController extends Controller
         echo "<link href=\"/css/track-flight.css\" rel=\"stylesheet\">";
         echo "<title>UPS货运查询</title>";
         echo $ups_res;
+    }
+
+    private function flightTK()
+    {
+        // 土耳其货运查询官网
+        $query_data = array('prefix' => $this->mawb3,'awb'=>$this->mawb8,'lang' => 'tr','operation' => 'sorawbinput','x'=>61,'y'=>13);
+        $query_data = http_build_query($query_data);
+        $http_data = array(
+            'http'=>array(
+                'method'=>"POST",
+                'header'=>"Content-type: application/x-www-form-urlencoded\r\n"."Content-length:".strlen($query_data)."\r\n",
+                'content' => $query_data)
+            );
+        $http_context = stream_context_create($http_data);
+        $search_res = file_get_contents("http://www.turkishcargo.com.tr/en/e-cargo/cargo-tracking", false, $http_context);
+        echo $search_res;
     }
 
     private function invalidMawb($mawb)
