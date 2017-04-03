@@ -152,6 +152,10 @@ Route::get('track/arrival/{mawb}','TrackController@arrival')->name('track_arriva
 // 航班信息
 Route::get('track/flight/{mawb}','TrackController@flight')->name('track_flight');
 
+// 统计首页
+Route::get('stats','StatsController@index')->name('stats_index');
+Route::get('stats/hawb','StatsController@hawbQty')->name('stats_hawb');
+Route::get('stats/mawb','StatsController@mawbQty')->name('stats_mawb');
 
 Auth::routes();
 
