@@ -154,7 +154,7 @@ Route::get('track/flight/{mawb}','TrackController@flight')->name('track_flight')
 
 // 统计首页
 Route::get('stats','StatsController@index')->name('stats_index');
-Route::get('stats/hawb','StatsController@hawbQty')->name('stats_hawb');
+Route::any('stats/hawb','StatsController@hawbQty')->name('stats_hawb');
 Route::get('stats/mawb','StatsController@mawbQty')->name('stats_mawb');
 
 Auth::routes();
