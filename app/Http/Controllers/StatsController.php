@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use App\Hawb;
@@ -37,7 +39,9 @@ class StatsController extends Controller
         if(isset($filter['filter_fltend'])&&$filter['filter_fltend']!="")
             $query->where('fltdate','<=',$filter['filter_fltend']);
         // 筛选：星期（复选）
-
+        if(isset($filter['filter_weekday'])){
+            $query->whereIn(DB::Raw('weekday(fltdate)'),$filter['filter_weekday']);
+        }
         // 目的港、航班号、承运人
         if(isset($filter['filter_dest'])&&$filter['filter_dest']!="")
             $query->where('dest','like','%'.$filter['filter_dest'].'%');
@@ -45,7 +49,7 @@ class StatsController extends Controller
             $query->where('fltno','like','%'.$filter['filter_fltno'].'%');
         if(isset($filter['filter_carrier'])&&$filter['filter_carrier']!="")
             $query->where('carrier','like','%'.$filter['filter_carrier'].'%');
-        // 货源、厂家、销售
+        // 货源、厂家
         if(isset($filter['filter_forward'])&&$filter['filter_forward']!="")
             $query->where('forward','like','%'.$filter['filter_forward'].'%');
         if(isset($filter['filter_factory'])&&$filter['filter_factory']!="")
@@ -67,4 +71,3 @@ class StatsController extends Controller
         echo "mawb quantity stats";
     }
 }
- 

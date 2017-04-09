@@ -20,24 +20,24 @@
               {!! Form::date('filter_fltstart',isset($filter_fltstart)?$filter_fltstart:date('Y-m-01')) !!}
               {!! Form::label('filter_fltend','-') !!}
               {!! Form::date('filter_fltend',isset($filter_fltend)?$filter_fltend:date('Y-m-t')) !!}
-              <button class="btn btn-sm btn-success" type="button">本周</button>
-              <button class="btn btn-sm btn-success" type="button">上周</button>
-              <button class="btn btn-sm btn-primary" type="button">本月</button>
-              <button class="btn btn-sm btn-primary" type="button">上月</button>
-              <button class="btn btn-sm btn-info" type="button">本年</button>
-              <button class="btn btn-sm btn-info" type="button">上年</button>
+              <button class="btn btn-sm btn-success" type="button" onclick="selThisWeek()">本周</button>
+              <button class="btn btn-sm btn-success" type="button" onclick="selLastWeek()">上周</button>
+              <button class="btn btn-sm btn-primary" type="button" onclick="selThisMonth()">本月</button>
+              <button class="btn btn-sm btn-primary" type="button" onclick="selLastMonth()">上月</button>
+              <button class="btn btn-sm btn-info" type="button" onclick="selThisYear()">本年</button>
+              <button class="btn btn-sm btn-info" type="button" onclick="selLastYear()">上年</button>
             </td>
           </tr>
           <tr>
             <td colspan="10">
               {!! Form::label('filter_weekday', '星期筛选: ') !!}
-              {!! Form::checkbox('filter_weekday', '1', true); !!}周一&nbsp;
-              {!! Form::checkbox('filter_weekday', '2', true); !!}周二&nbsp;
-              {!! Form::checkbox('filter_weekday', '3', true); !!}周三&nbsp;
-              {!! Form::checkbox('filter_weekday', '4', true); !!}周四&nbsp;
-              {!! Form::checkbox('filter_weekday', '5', true); !!}周五&nbsp;
-              {!! Form::checkbox('filter_weekday', '6', true); !!}周六&nbsp;
-              {!! Form::checkbox('filter_weekday', '7', true); !!}周日&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              {!! Form::checkbox('filter_weekday[0]', '0', !isset($perpage)?true:isset($filter_weekday[0])) !!}周一&nbsp;
+              {!! Form::checkbox('filter_weekday[1]', '1', !isset($perpage)?true:isset($filter_weekday[1])) !!}周二&nbsp;
+              {!! Form::checkbox('filter_weekday[2]', '2', !isset($perpage)?true:isset($filter_weekday[2])) !!}周三&nbsp;
+              {!! Form::checkbox('filter_weekday[3]', '3', !isset($perpage)?true:isset($filter_weekday[3])) !!}周四&nbsp;
+              {!! Form::checkbox('filter_weekday[4]', '4', !isset($perpage)?true:isset($filter_weekday[4])) !!}周五&nbsp;
+              {!! Form::checkbox('filter_weekday[5]', '5', !isset($perpage)?true:isset($filter_weekday[5])) !!}周六&nbsp;
+              {!! Form::checkbox('filter_weekday[6]', '6', !isset($perpage)?true:isset($filter_weekday[6])) !!}周日&nbsp;&nbsp;
               {!! Form::checkbox('chk_weekday', '0', true, ['onclick'=>'checkWeekday()']); !!}全选&nbsp;
             </td>
           </tr>
@@ -129,19 +129,91 @@
       document.getElementById('filter_carrier').value=null;
       document.getElementById('filter_forward').value=null;
       document.getElementById('filter_factory').value=null;
-      var weekday = document.getElementsByName('filter_weekday');
-      var len = weekday.length;
-      for (var i = 0; i < len; i++) weekday[i].checked = true;
+      document.getElementsByName("filter_weekday[0]")[0].checked = true;
+      document.getElementsByName("filter_weekday[1]")[0].checked = true;
+      document.getElementsByName("filter_weekday[2]")[0].checked = true;
+      document.getElementsByName("filter_weekday[3]")[0].checked = true;
+      document.getElementsByName("filter_weekday[4]")[0].checked = true;
+      document.getElementsByName("filter_weekday[5]")[0].checked = true;
+      document.getElementsByName("filter_weekday[6]")[0].checked = true;
     }
     function checkWeekday() {
-      var weekday = document.getElementsByName('filter_weekday');
-      var len = weekday.length;
       var chk = document.getElementsByName('chk_weekday');
       if(chk[0].checked==true){
-        for (var i = 0; i < len; i++) weekday[i].checked = true;
+        document.getElementsByName("filter_weekday[0]")[0].checked = true;
+        document.getElementsByName("filter_weekday[1]")[0].checked = true;
+        document.getElementsByName("filter_weekday[2]")[0].checked = true;
+        document.getElementsByName("filter_weekday[3]")[0].checked = true;
+        document.getElementsByName("filter_weekday[4]")[0].checked = true;
+        document.getElementsByName("filter_weekday[5]")[0].checked = true;
+        document.getElementsByName("filter_weekday[6]")[0].checked = true;
       }else{
-        for (var i = 0; i < len; i++) weekday[i].checked = false;
+        document.getElementsByName("filter_weekday[0]")[0].checked = false;
+        document.getElementsByName("filter_weekday[1]")[0].checked = false;
+        document.getElementsByName("filter_weekday[2]")[0].checked = false;
+        document.getElementsByName("filter_weekday[3]")[0].checked = false;
+        document.getElementsByName("filter_weekday[4]")[0].checked = false;
+        document.getElementsByName("filter_weekday[5]")[0].checked = false;
+        document.getElementsByName("filter_weekday[6]")[0].checked = false;
       }
+    }
+    function selThisWeek() {
+      // body...
+    }
+    function selLastWeek() {
+      // body...
+    }
+    function selThisMonth() {
+      // body...
+      var thisDate=new Date()
+      startyear = thisDate.getFullYear();
+      startmonth = thisDate.getMonth()<9?"0"+(thisDate.getMonth()+1):thisDate.getMonth()+1;
+      fltstart = startyear+"-"+startmonth+"-"+"01";
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
+      if(thisDate.getMonth()==11){
+        newyear = thisDate.getFullYear()+1;
+        newmonth = 1;
+      }else{
+        newyear = thisDate.getFullYear();
+        newmonth = thisDate.getMonth()+1;
+      }
+      newDate = new Date(newyear,newmonth,0)
+      alert(thisDate);
+      alert(newDate);
+      endyear = newDate.getFullYear();
+      endmonth = newDate.getMonth()<9?"0"+(newDate.getMonth()+1):newDate.getMonth()+1;
+      enddate = newDate.getDate()<9?"0"+(newDate.getDate()):newDate.getDate();
+      fltend = endyear+"-"+endmonth+"-"+enddate;
+      document.getElementsByName("filter_fltend")[0].value = fltend;
+    }
+    function selLastMonth() {
+      // body...
+      var thisDate=new Date()
+      startyear = thisDate.getFullYear();
+      startmonth = thisDate.getMonth()<9?"0"+(thisDate.getMonth()):thisDate.getMonth();
+      fltstart = startyear+"-"+startmonth+"-"+"01";
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
+      if(thisDate.getMonth()==0){
+        newyear = thisDate.getFullYear();
+        newmonth = 11;
+      }else{
+        newyear = thisDate.getFullYear();
+        newmonth = thisDate.getMonth();
+      }
+      newDate = new Date(newyear,newmonth,0)
+      alert(thisDate);
+      alert(newDate);
+      endyear = newDate.getFullYear();
+      endmonth = newDate.getMonth()<9?"0"+(newDate.getMonth()+1):newDate.getMonth()+1;
+      enddate = newDate.getDate()<9?"0"+(newDate.getDate()):newDate.getDate();
+      fltend = endyear+"-"+endmonth+"-"+enddate;
+      document.getElementsByName("filter_fltend")[0].value = fltend;
+    }
+    function selThisYear() {
+      // body...
+    }
+    function selLastYear() {
+      // body...
     }
   </script>
 @stop
