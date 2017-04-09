@@ -95,7 +95,7 @@ class MawbController extends Controller
             'mawb'=>'required',
             'shipper'=>'required',
             'consignee'=>'required',
-            'fltno'=>'required|regex:/^[A-Z0-9]{2}\d{3,4}$/',
+            'fltno'=>'required|regex:/^[A-Z0-9]{2}\d{2,4}$/',
             'fltdate'=>'required|date',
             'package'=>'required',
             'num'=>'required|integer',

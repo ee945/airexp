@@ -29,7 +29,7 @@ class CreateHawbRequest extends Request
             'mawb' => 'regex:/^\d{3}-\d{8}$/|ismawb',
             'dest' => 'required',
             'desti' => 'required',
-            'fltno' => 'regex:/^[A-Z0-9]{2}\d{3,4}$/',
+            'fltno' => 'regex:/^[A-Z0-9]{2}\d{2,4}$/',
             'fltdate' => 'required|date',
             'forward' => 'required',
             'seller' => 'required',
