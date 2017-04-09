@@ -28,15 +28,12 @@
                 <li><a href="{{ route('mawb_list') }}">总单列表</a></li>
               </ul>
             </li>
-            {{-- <li class="dropdown">
+            <li class="dropdown">
               <a href="#" class="dropdown-toggle">统计报表<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">货量统计</a></li>
-                <li><a href="#">货源统计</a></li>
-                <li><a href="#">每月货量</a></li>
-                <li><a href="#">销售分析</a></li>
+                <li><a href="{{ route('stats_hawb') }}">分单货量</a></li>
               </ul>
-            </li> --}}
+            </li>
             <li><a href="{{ route('track_index') }}">货物追踪</a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle">数据维护<span class="caret"></span></a>

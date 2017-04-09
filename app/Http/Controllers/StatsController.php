@@ -54,15 +54,16 @@ class StatsController extends Controller
             $query->where('forward','like','%'.$filter['filter_forward'].'%');
         if(isset($filter['filter_factory'])&&$filter['filter_factory']!="")
             $query->where('factory','like','%'.$filter['filter_factory'].'%');
+        $query_count = $query->count();
         // 按perpage值进行分页
-        $hawbs = $query->paginate(isset($filter['perpage'])?$filter['perpage']:100);
+        $hawbs = $query->paginate(isset($filter['perpage'])?$filter['perpage']:200);
         // 统计当前显示的总和 - 件数、实际重量、收费重量、体积
         $total_count = $hawbs->count('hawb');
         $total_num = $hawbs->sum('num');
         $total_gw = $hawbs->sum('gw');
         $total_cw = $hawbs->sum('cw');
         $total_cbm = $hawbs->sum('cbm');
-        return view(theme("stats.hawbqty"),compact('hawbs','title','total_count','total_num','total_gw','total_cw','total_cbm'))->with($filter);
+        return view(theme("stats.hawbqty"),compact('hawbs','title','total_count','total_num','total_gw','total_cw','total_cbm','query_count'))->with($filter);
     }
 
     public function mawbQty()

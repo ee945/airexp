@@ -10,8 +10,9 @@
             <td colspan="10">
               {!! Form::submit('开始统计') !!}&nbsp;
               <button type="button" onclick="reset_filter()">重置条件</button>&nbsp;
-              {!! Form::label('perpage', '每页显示: ') !!}&nbsp;
-              {!! Form::text('perpage',isset($perpage)?$perpage:100,['size'=>'4']) !!}
+              {!! Form::label('perpage', '显示数量: ') !!}&nbsp;
+              {!! Form::text('perpage',isset($perpage)?$perpage:200,['size'=>'4']) !!}&nbsp;
+              <span {{$query_count>200?"style=color:red":""}}>查询到 {{ $query_count }} 条结果</span>
             </td>
           </tr>
           <tr>
@@ -158,62 +159,79 @@
       }
     }
     function selThisWeek() {
-      // body...
+      // 设置航班日期范围为本周
+      var thisDate=new Date()
+      diff = thisDate.getDay()==0?thisDate.getDay()+6:thisDate.getDay()-1;
+      weekstart = new Date(thisDate.setDate(thisDate.getDate()-diff));
+      weekend = new Date(thisDate.setDate(thisDate.getDate()+6))
+      fltmonth = weekstart.getMonth()<9?"0"+(weekstart.getMonth()+1):weekstart.getMonth()+1;
+      fltdate = weekstart.getDate()<9?"0"+(weekstart.getDate()):weekstart.getDate();
+      fltstart = weekstart.getFullYear()+"-"+fltmonth+"-"+fltdate;
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
+      fltmonth = weekend.getMonth()<9?"0"+(weekend.getMonth()+1):weekend.getMonth()+1;
+      fltdate = weekend.getDate()<10?"0"+(weekend.getDate()):weekend.getDate();
+      fltend = weekend.getFullYear()+"-"+fltmonth+"-"+fltdate;
+      document.getElementsByName("filter_fltend")[0].value = fltend;
     }
     function selLastWeek() {
-      // body...
+      // 设置航班日期范围为上周
+      var thisDate=new Date()
+      diff = thisDate.getDay()==0?thisDate.getDay()+6:thisDate.getDay()-1;
+      weekstart = new Date(thisDate.setDate(thisDate.getDate()-diff-7));
+      weekend = new Date(thisDate.setDate(thisDate.getDate()+6))
+      fltmonth = weekstart.getMonth()<9?"0"+(weekstart.getMonth()+1):weekstart.getMonth()+1;
+      fltdate = weekstart.getDate()<9?"0"+(weekstart.getDate()):weekstart.getDate();
+      fltstart = weekstart.getFullYear()+"-"+fltmonth+"-"+fltdate;
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
+      fltmonth = weekend.getMonth()<9?"0"+(weekend.getMonth()+1):weekend.getMonth()+1;
+      fltdate = weekend.getDate()<10?"0"+(weekend.getDate()):weekend.getDate();
+      fltend = weekend.getFullYear()+"-"+fltmonth+"-"+fltdate;
+      document.getElementsByName("filter_fltend")[0].value = fltend;
     }
     function selThisMonth() {
-      // body...
+      // 设置航班日期范围为本月
       var thisDate=new Date()
-      startyear = thisDate.getFullYear();
-      startmonth = thisDate.getMonth()<9?"0"+(thisDate.getMonth()+1):thisDate.getMonth()+1;
-      fltstart = startyear+"-"+startmonth+"-"+"01";
-      document.getElementsByName("filter_fltstart")[0].value = fltstart;
       if(thisDate.getMonth()==11){
         newyear = thisDate.getFullYear()+1;
-        newmonth = 1;
+        newmonth = 0;
       }else{
         newyear = thisDate.getFullYear();
         newmonth = thisDate.getMonth()+1;
       }
       newDate = new Date(newyear,newmonth,0)
-      alert(thisDate);
-      alert(newDate);
-      endyear = newDate.getFullYear();
-      endmonth = newDate.getMonth()<9?"0"+(newDate.getMonth()+1):newDate.getMonth()+1;
-      enddate = newDate.getDate()<9?"0"+(newDate.getDate()):newDate.getDate();
-      fltend = endyear+"-"+endmonth+"-"+enddate;
+      fltmonth = newDate.getMonth()<9?"0"+(newDate.getMonth()+1):newDate.getMonth()+1;
+      fltstart = newDate.getFullYear()+"-"+fltmonth+"-"+"01";
+      fltend = newDate.getFullYear()+"-"+fltmonth+"-"+newDate.getDate();
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
       document.getElementsByName("filter_fltend")[0].value = fltend;
     }
     function selLastMonth() {
-      // body...
+      // 设置航班日期范围为上月
       var thisDate=new Date()
-      startyear = thisDate.getFullYear();
-      startmonth = thisDate.getMonth()<9?"0"+(thisDate.getMonth()):thisDate.getMonth();
-      fltstart = startyear+"-"+startmonth+"-"+"01";
+      newyear = thisDate.getFullYear();
+      newmonth = thisDate.getMonth();
+      newDate = new Date(thisDate.getFullYear(),thisDate.getMonth(),0)
+      fltmonth = newDate.getMonth()<9?"0"+(newDate.getMonth()+1):newDate.getMonth()+1;
+      fltstart = newDate.getFullYear()+"-"+fltmonth+"-"+"01";
+      fltend = newDate.getFullYear()+"-"+fltmonth+"-"+newDate.getDate();
       document.getElementsByName("filter_fltstart")[0].value = fltstart;
-      if(thisDate.getMonth()==0){
-        newyear = thisDate.getFullYear();
-        newmonth = 11;
-      }else{
-        newyear = thisDate.getFullYear();
-        newmonth = thisDate.getMonth();
-      }
-      newDate = new Date(newyear,newmonth,0)
-      alert(thisDate);
-      alert(newDate);
-      endyear = newDate.getFullYear();
-      endmonth = newDate.getMonth()<9?"0"+(newDate.getMonth()+1):newDate.getMonth()+1;
-      enddate = newDate.getDate()<9?"0"+(newDate.getDate()):newDate.getDate();
-      fltend = endyear+"-"+endmonth+"-"+enddate;
       document.getElementsByName("filter_fltend")[0].value = fltend;
     }
     function selThisYear() {
-      // body...
+      // 设置航班日期范围为本年
+      var thisDate=new Date()
+      fltstart = thisDate.getFullYear()+"-"+"01"+"-"+"01";
+      fltend = thisDate.getFullYear()+"-"+"12"+"-"+"31";
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
+      document.getElementsByName("filter_fltend")[0].value = fltend;
     }
     function selLastYear() {
-      // body...
+      // 设置航班日期范围为上年
+      var thisDate=new Date()
+      fltstart = (thisDate.getFullYear()-1)+"-"+"01"+"-"+"01";
+      fltend = (thisDate.getFullYear()-1)+"-"+"12"+"-"+"31";
+      document.getElementsByName("filter_fltstart")[0].value = fltstart;
+      document.getElementsByName("filter_fltend")[0].value = fltend;
     }
   </script>
 @stop
