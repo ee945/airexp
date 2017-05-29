@@ -22,7 +22,7 @@ class JincangController extends Controller
         // 获取表单搜索条件
         $search = $request->all();
         // 获取全部进仓单记录，按托运日期、航班日期排序
-        $query = Jincang::orderBy('jcno','desc');
+        $query = Jincang::orderBy('status','asc')->orderBy('jcno','desc');
         // 逐一判断是否有筛选条件
         if(isset($search['search_jcno'])&&$search['search_jcno']!="")
             $query->where('jcno','like','%'.$search['search_jcno'].'%');
