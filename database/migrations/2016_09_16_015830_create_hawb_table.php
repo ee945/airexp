@@ -12,7 +12,7 @@ class CreateHawbTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_hawb', function (Blueprint $table) {
+        Schema::create('hawbs', function (Blueprint $table) {
             $table->bigIncrements('id');
             // 分单号
             $table->string('hawb');
@@ -89,6 +89,6 @@ class CreateHawbTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exp_hawb');
+        Schema::drop('hawbs');
     }
 }

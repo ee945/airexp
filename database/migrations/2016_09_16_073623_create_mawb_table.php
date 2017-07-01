@@ -12,7 +12,7 @@ class CreateMawbTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_mawb', function (Blueprint $table) {
+        Schema::create('mawbs', function (Blueprint $table) {
             $table->bigIncrements('id');
             // 总单号
             $table->string('mawb');
@@ -104,6 +104,6 @@ class CreateMawbTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exp_mawb');
+        Schema::drop('mawbs');
     }
 }

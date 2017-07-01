@@ -12,7 +12,7 @@ class CreateSellerTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_seller', function (Blueprint $table) {
+        Schema::create('sellers', function (Blueprint $table) {
             $table->increments('id');
             // 代理货源
             $table->string('forward');
@@ -32,6 +32,6 @@ class CreateSellerTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exp_seller');
+        Schema::drop('sellers');
     }
 }

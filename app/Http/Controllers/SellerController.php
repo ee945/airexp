@@ -69,7 +69,7 @@ class SellerController extends Controller
         ## 新建销售分配 post
         // 自定义验证规则
         $this->validate($request,[
-            'forward' => 'required|unique:exp_seller,forward',
+            'forward' => 'required|unique:sellers,forward',
             'seller' => 'required',
         ]);
         Seller::create($request->all());

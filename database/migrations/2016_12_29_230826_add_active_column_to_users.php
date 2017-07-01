@@ -13,7 +13,7 @@ class AddActiveColumnToUsers extends Migration
      */
     public function up()
     {
-        Schema::table('exp_users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
             $table->tinyInteger('level')->after('remark');
         });
@@ -26,7 +26,7 @@ class AddActiveColumnToUsers extends Migration
      */
     public function down()
     {
-        Schema::table('exp_users', function (Blueprint $table) {
+        Schema::table('users', function (Blueprint $table) {
             //
             $table->dropColumn('level');
         });

@@ -12,7 +12,7 @@ class CreateClientTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_client', function (Blueprint $table) {
+        Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             // 客户代码
             $table->string('code');
@@ -32,6 +32,6 @@ class CreateClientTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exp_client');
+        Schema::drop('clients');
     }
 }

@@ -25,7 +25,7 @@ class CreateHawbRequest extends Request
     {
         return [
             'opdate' => 'required|date',
-            'hawb' => 'required|unique:exp_hawb,hawb|regex:/^[0-9A-Z-]{6,12}$/',
+            'hawb' => 'required|unique:hawbs,hawb|regex:/^[0-9A-Z-]{6,12}$/',
             'mawb' => 'regex:/^\d{3}-\d{8}$/|ismawb',
             'dest' => 'required',
             'desti' => 'required',

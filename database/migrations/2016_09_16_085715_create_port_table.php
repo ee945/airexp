@@ -12,7 +12,7 @@ class CreatePortTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_port', function (Blueprint $table) {
+        Schema::create('ports', function (Blueprint $table) {
             $table->increments('id');
             // 目的地三字代码
             $table->string('code');
@@ -38,6 +38,6 @@ class CreatePortTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exp_port');
+        Schema::drop('ports');
     }
 }

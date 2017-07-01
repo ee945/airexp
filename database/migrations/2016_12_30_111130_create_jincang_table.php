@@ -13,7 +13,7 @@ class CreateJincangTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_jincang', function (Blueprint $table) {
+        Schema::create('jincang', function (Blueprint $table) {
             $table->bigIncrements('id');
             // 托运日期
             $table->date('regdate');
@@ -49,6 +49,6 @@ class CreateJincangTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exp_jincang');
+        Schema::dropIfExists('jincang');
     }
 }

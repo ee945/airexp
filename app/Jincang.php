@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jincang extends Model
 {
     //
-    protected $table = "exp_jincang";
+    protected $table = "jincang";
     protected $fillable = [
     	'regdate',
         'jcno',

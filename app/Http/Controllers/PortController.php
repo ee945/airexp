@@ -67,7 +67,7 @@ class PortController extends Controller
         ## 新建目的港 post
         // 自定义验证规则
         $this->validate($request,[
-            'code' => 'required|unique:exp_port,code',
+            'code' => 'required|unique:ports,code',
             'name' => 'required',
             'zone'=>'required',
         ]);

@@ -81,7 +81,7 @@ class ClientController extends Controller
         ## 新建客户 post
         // 自定义验证规则
         $this->validate($request,[
-            'code' => 'required|unique:exp_address,code',
+            'code' => 'required|unique:addresses,code',
             'name' => 'required',
             'cata'=>'required',
         ]);

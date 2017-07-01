@@ -12,7 +12,7 @@ class CreateAddressTable extends Migration
      */
     public function up()
     {
-        Schema::create('exp_address', function (Blueprint $table) {
+        Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
             // 地址代码
             $table->string('code');
@@ -36,6 +36,6 @@ class CreateAddressTable extends Migration
      */
     public function down()
     {
-        Schema::drop('exp_address');
+        Schema::drop('addresses');
     }
 }

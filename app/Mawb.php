@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Mawb extends Model
 {
     //
-    protected $table = "exp_mawb";
     protected $fillable = [
 	    'mawb',
 	    'oversea',

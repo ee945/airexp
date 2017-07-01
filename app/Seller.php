@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Seller extends Model
 {
     //
-    protected $table = "exp_seller";
     protected $fillable = [
     	'forward',
     	'seller',

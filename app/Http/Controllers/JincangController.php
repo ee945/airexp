@@ -83,7 +83,7 @@ class JincangController extends Controller
         // 自定义验证规则
         $this->validate($request,[
             'regdate' => 'required|date',
-            'jcno' => 'required|unique:exp_jincang,jcno|regex:/^[0-9A-Z-]{6,12}$/',
+            'jcno' => 'required|unique:jincang,jcno|regex:/^[0-9A-Z-]{6,12}$/',
             'forward'=>'required',
         ]);
         Jincang::create($request->all());

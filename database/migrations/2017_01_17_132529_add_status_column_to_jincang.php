@@ -13,7 +13,7 @@ class AddStatusColumnToJincang extends Migration
      */
     public function up()
     {
-        Schema::table('exp_jincang', function (Blueprint $table) {
+        Schema::table('jincang', function (Blueprint $table) {
             //
             $table->tinyInteger('status')->after('remark');
         });
@@ -26,7 +26,7 @@ class AddStatusColumnToJincang extends Migration
      */
     public function down()
     {
-        Schema::table('exp_jincang', function (Blueprint $table) {
+        Schema::table('jincang', function (Blueprint $table) {
             //
             $table->dropColumn('status');
         });
