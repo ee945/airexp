@@ -54,7 +54,7 @@ class TrackController extends Controller
             echo "<br>";
         }elseif(in_array($this->mawb3, ['999','160','232','738','043','406','065','235','695'])){
             $this->arrivalPactl();
-        }elseif(in_array($this->mawb3, ['112','784','172','217','205','297','756','672','016','988'])){
+        }elseif(in_array($this->mawb3, ['112','784','172','217','205','297','756','672','016','988','501'])){
             $this->arrivalCeAir();
         }else{
             echo "暂不支持查询 ".$this->mawb3." 运抵信息"."<br><br>";
@@ -101,6 +101,8 @@ class TrackController extends Controller
             $this->flightEVACargo();
         }elseif(in_array($this->mawb3, ['988'])){
             $this->flightAsiana();
+        }elseif(in_array($this->mawb3, ['501'])){
+            $this->flightSilkwayWest();
         }else{
             echo "暂不支持直接查询 ".$this->mawb3." 运单"."<br><br>";
             echo "<a href=\"/track/airline\">航空公司官网货运追踪网址列表</a>";
@@ -249,6 +251,13 @@ class TrackController extends Controller
     {
         // 韩亚航空运单查询
         $url = "https://www.asianacargo.com/tracking/newAirWaybill.do?globalLang=Cn&mawb=988-".$this->mawb8;
+        Header("Location: $url");
+    }
+
+    private function flightSilkwayWest()
+    {
+        // 长荣货运查询官网
+        $url = "http://www.silkwaywest.com/test.php?awb=".$this->mawb8."&pfx=".$this->mawb3;
         Header("Location: $url");
     }
 
