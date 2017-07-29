@@ -38,6 +38,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle">数据维护<span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ route('contact_list') }}">通讯录</a></li>
                 <li><a href="{{ route('address_list') }}">地址库</a></li>
                 <li><a href="{{ route('port_list') }}">目的港</a></li>
                 <li><a href="{{ route('client_list') }}">客户管理</a></li>

@@ -12,6 +12,8 @@
 */
 
 Route::get('/', 'HomeController@index');
+Route::get('/home', 'HomeController@index');
+Auth::routes();
 
 Route::get('test', 'Controller@test');
 
@@ -157,6 +159,15 @@ Route::get('stats','StatsController@index')->name('stats_index');
 Route::any('stats/hawb','StatsController@hawbQty')->name('stats_hawb');
 Route::get('stats/mawb','StatsController@mawbQty')->name('stats_mawb');
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+// 企业通讯录
+// 联系人列表
+Route::any('contact', function(){return redirect(route('contact_list'));});
+Route::any('contact/list', 'ContactController@lists')->name('contact_list');
+// 查看或修改联系人
+Route::get('contact/view/{id}', 'ContactController@show')->name('contact_view');
+Route::post('contact/view/{id}', 'ContactController@update');
+// 添加联系人（添加/提交）
+Route::get('contact/add', 'ContactController@add')->name('contact_add');
+Route::post('contact/add', 'ContactController@create');
+// 删除联系人
+Route::get('contact/del/{id}', 'ContactController@delete')->name('contact_del');
