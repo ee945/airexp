@@ -27,6 +27,7 @@ Route::get('get/hshipper/{shippercode}', 'AddrController@getHShipper');
 Route::get('get/hconsignee/{consigneecode}', 'AddrController@getHConsignee');
 Route::get('get/hnotify/{notifycode}', 'AddrController@getHNotify');
 Route::get('get/mconsignee/{oversea}', 'AddrController@getMConsignee');
+Route::get('get/contact/{contactcode}', 'ContactController@getContact');
 
 
 // 进仓列表

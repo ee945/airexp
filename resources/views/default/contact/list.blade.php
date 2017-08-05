@@ -65,7 +65,7 @@
               {!! Form::text('search_mobile',isset($search_mobile)?$search_mobile:null,['size'=>'6','class' => 'form-control']) !!}
             </td>
             <td>
-              {!! Form::text('perpage',isset($perpage)?$perpage:20,['size'=>'4','class' => 'form-control']) !!}
+              {!! Form::text('perpage',isset($perpage)?$perpage:40,['size'=>'4','class' => 'form-control']) !!}
             </td>
             <td colspan="2">
               <button type="button" onClick="location.href='{!! route('contact_add') !!}'" class="form-control btn-primary">添加联系人</button>

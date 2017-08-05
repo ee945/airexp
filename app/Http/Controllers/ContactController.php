@@ -12,6 +12,13 @@ class ContactController extends Controller
         $this->middleware('auth');
     }
 
+    public function getContact($contactcode)
+    {
+        # code...
+        $contact = Contact::where('code',$contactcode)->first();
+        return $contact;
+    }
+
     public function lists(Request $request)
     {
         ## 显示联系人列表
@@ -20,7 +27,7 @@ class ContactController extends Controller
         // 获取表单搜索条件
         $search = $request->all();
         // 获取全部联系人记录，按姓名排序
-        $query = Contact::orderBy('name','asc');
+        $query = Contact::where('status','>',0)->orderBy('status','desc')->orderBy('name','asc');
         // 逐一判断是否有筛选条件
         if(isset($search['search_code'])&&$search['search_code']!="")
             $query->where('code','like','%'.$search['search_code'].'%');
@@ -33,7 +40,7 @@ class ContactController extends Controller
         if(isset($search['search_mobile'])&&$search['search_mobile']!="")
             $query->where('mobile','like','%'.$search['search_mobile'].'%');
         // 按perpage值进行分页
-        $contacts = $query->paginate(isset($search['perpage'])?$search['perpage']:20);
+        $contacts = $query->paginate(isset($search['perpage'])?$search['perpage']:40);
         // 返回联系人列表视图 - 传入参数（联系人记录集合、网页title，以及查询条件）
         return view(theme("contact.list"),compact('contacts','title'))->with($search);
     }
@@ -82,6 +89,7 @@ class ContactController extends Controller
             'name' => 'required',
             'company'=>'required',
             'mail'=>'email',
+            'status'=>'required|integer|min:1',
         ]);
         // 判断执行结果，并提示更新成功+返回列表，否则直接返回列表
         $query = Contact::where('id',$contact->id)->update($request->except(['_token']));

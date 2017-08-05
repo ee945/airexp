@@ -25,8 +25,8 @@
           <tr>
             <td style="width:10%;">{!! Form::label('code', '代码: ') !!}</td>
             <td style="width:33%;">{!! Form::text('code',isset($contact->code)?$contact->code:null,['size'=>'16','class' => 'form-control']) !!}</td>
-            <td style="width:10%;"></td>
-            <td style="width:33%;"></td>
+            <td style="width:10%;color:#ccc">{!! Form::label('status', '序列状态: ') !!}</td>
+            <td style="width:33%;">{!! Form::text('status',isset($contact->status)?$contact->status:null,['size'=>'16','class' => 'form-control']) !!}</td>
             <td></td>
           </tr>
           <tr>

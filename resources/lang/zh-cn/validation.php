@@ -161,6 +161,7 @@ return [
         'seller' => '销售人',
         'company' => '公司',
         'mail' => '邮件',
+        'status' => '状态',
     ],
 
 ];

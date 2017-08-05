@@ -45,8 +45,11 @@
           <tr>
           </tr>
           <tr>
-            <td>{!! Form::label('client', '托运人: ') !!}</td>
-            <td>{!! Form::text('client',isset($jincang->client)?$jincang->client:null,['size'=>'16']) !!}</td>
+            <td>{!! Form::label('contactcode', '托运人: ') !!}</td>
+            <td>
+              {!! Form::text('contactcode',null,['size'=>'4']) !!}
+              {!! Form::label('client', "&nbsp;") !!}
+              {!! Form::text('client',isset($jincang->client)?$jincang->client:null,['size'=>'9']) !!}</td>
           </tr>
           <tr>
             <td>{!! Form::label('forwardcode', '货源: ') !!}</td>
@@ -96,10 +99,11 @@
     $(document).ready(function(){
       $("#jcno").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#dest").attr("onkeyup",'this.value=this.value.toUpperCase()');
+      $("#contactcode").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#forwardcode").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#factorycode").attr("onkeyup",'this.value=this.value.toUpperCase()');
       $("#carrier").attr("onkeyup",'this.value=this.value.toUpperCase()');
-      $("#jcno").focus();
+      $("#dest").focus();
     });
 
     //输入目的港三字代码自动显示补全机场全称
@@ -109,6 +113,18 @@
         $.get('{{url('get/dest')}}/'+dest,function(json){
           if(json.name==null)json.name=='';
           $("input[name='desti']").val(json.name);
+        });
+      }
+    });
+
+    //输入联系人代码自动显示补全托运人和货源
+    $("input[name='contactcode']").blur(function(){
+      var contactcode = $("input[name='contactcode']").val();
+      if(contactcode!=""){
+        $.get('{{url('get/contact')}}/'+contactcode,function(json){
+          if(json.name==null)json.name=='';
+          $("input[name='client']").val(json.name);
+          $("input[name='forward']").val(json.company);
         });
       }
     });
@@ -137,6 +153,12 @@
 
     // 点击上次进仓编号，自动加1填充
     $("#last_jc").click(function(){
+      new_jcno = {{ isset($last_jcno)?$last_jcno:0 }} + 1;
+      $("#jcno").val(new_jcno);
+    });
+
+    // 加载完进仓登记页面后自动填入进仓编号（上次加1）
+    $(document).ready(function(){
       new_jcno = {{ isset($last_jcno)?$last_jcno:0 }} + 1;
       $("#jcno").val(new_jcno);
     });
