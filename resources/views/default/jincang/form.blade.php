@@ -157,10 +157,12 @@
       $("#jcno").val(new_jcno);
     });
 
+    @if($title=="进仓登记")
     // 加载完进仓登记页面后自动填入进仓编号（上次加1）
     $(document).ready(function(){
       new_jcno = {{ isset($last_jcno)?$last_jcno:0 }} + 1;
       $("#jcno").val(new_jcno);
     });
+    @endif
   </script>
 @stop

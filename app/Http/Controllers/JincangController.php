@@ -100,7 +100,7 @@ class JincangController extends Controller
             'forward'=>'required',
         ]);
         // 判断执行结果，并提示更新成功+返回列表，否则直接返回列表
-        $query = Jincang::where('jcno',$jcno)->update($request->except(['_token','forwardcode','factorycode']));
+        $query = Jincang::where('jcno',$jcno)->update($request->except(['_token','contactcode','forwardcode','factorycode']));
         if($query=='1'){
             return redirect(route('jincang_view',['jcno'=>$jcno,'update'=>'yes']));
         }else{
