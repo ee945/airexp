@@ -66,7 +66,7 @@ class ContactController extends Controller
         ## 新建联系人 post
         // 自定义验证规则
         $this->validate($request,[
-            'code' => 'required|unique:contacts,code',
+            'code' => 'unique:contacts,code',
             'name' => 'required',
             'company'=>'required',
             'mail'=>'email',
@@ -82,7 +82,7 @@ class ContactController extends Controller
         $contact = Contact::find($id);
         if($contact->code != $request->code){
         	$this->validate(request(),[
-        	    'code' => 'required|unique:contacts,code',
+                'code' => 'unique:contacts,code',
         	]);
         }
         $this->validate(request(),[
