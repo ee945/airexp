@@ -49,12 +49,12 @@ class TrackController extends Controller
 
     public function arrival($mawb)
     {
-        # 查运抵及放行（调用货站查询系统-pactl，东航物流）
+        # 查运抵及放行（调用货站查询系统-pactl，东航物流） // 699
         if($this->invalidMawb($mawb)){
             echo "<br>";
-        }elseif(in_array($this->mawb3, ['999','160','232','738','043','406','065','235','695'])){
+        }elseif(in_array($this->mawb3, ['020','043','065','071','160','176','232','235','406','695','738','999'])){
             $this->arrivalPactl();
-        }elseif(in_array($this->mawb3, ['112','784','172','217','205','297','756','672','016','988','501'])){
+        }elseif(in_array($this->mawb3, ['016','018','098','112','172','205','217','297','501','537','618','672','756','784','843','933','988'])){
             $this->arrivalCeAir();
         }else{
             echo "暂不支持查询 ".$this->mawb3." 运抵信息"."<br><br>";
