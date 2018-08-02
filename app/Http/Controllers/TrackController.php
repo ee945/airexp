@@ -85,16 +85,16 @@ class TrackController extends Controller
             echo "<br>";
         }elseif(in_array($this->mawb3, ['999'])){
             $this->flightAirChina();
-        }elseif(in_array($this->mawb3, ['112','784','172','217','205','756'])){
+        }elseif(in_array($this->mawb3, ['112','784','172','217','205','756','018','537','618','843'])){
             $this->flightCeAir();
-        }elseif(in_array($this->mawb3, ['160'])){
+        }elseif(in_array($this->mawb3, ['160','043'])){
             $this->flightCathayCacific();
         }elseif(in_array($this->mawb3, ['232'])){
-            $this->flightMaskargo();
+            $this->flightMaskargo();  //失效
         }elseif(in_array($this->mawb3, ['406'])){
             $this->flightUPS();
         }elseif(in_array($this->mawb3, ['235'])){
-            $this->flightTK();
+            $this->flightTK(); //待修整
         }elseif(in_array($this->mawb3, ['016'])){
             $this->flightUnitedCargo();
         }elseif(in_array($this->mawb3, ['695'])){
@@ -103,6 +103,16 @@ class TrackController extends Controller
             $this->flightAsiana();
         }elseif(in_array($this->mawb3, ['501'])){
             $this->flightSilkwayWest();
+        }elseif(in_array($this->mawb3, ['933'])){
+            $this->flightNCA();
+        }elseif(in_array($this->mawb3, ['699'])){
+            $this->flightUW();
+        }elseif(in_array($this->mawb3, ['020'])){
+            $this->flightLH();
+        }elseif(in_array($this->mawb3, ['176'])){
+            $this->flightEK();
+        }elseif(in_array($this->mawb3, ['098'])){
+            $this->flightAI();
         }else{
             echo "暂不支持直接查询 ".$this->mawb3." 运单"."<br><br>";
             echo "<a href=\"/track/airline\">航空公司官网货运追踪网址列表</a>";
@@ -142,10 +152,15 @@ class TrackController extends Controller
             '__VIEWSTATE' => '/wEPDwULLTEyODYxNTg3NzIPZBYCZg9kFgoCAg8PFgIeBFRleHQFBuafpeivomRkAgQPZBYCZg9kFgRmDw8WBh4JRm9yZUNvbG9yCk4fAAUS6YCJ5oup6Lef6Liq54q25oCBHgRfIVNCAgRkZAIBDxAPZBYCHgdvbmNsaWNrBSRDaGVja0JveExpc3RfQ2xpY2soJ3R4dFN0YXR1c0NvZGUnKTsQFQkM6LSn54mp5Lqk5o6lDOi0p+eJqeWHuua4rwzov5vmuK/liLDovr4M6LSn54mp6L2s5Ye6DOeQhui0p+WujOavlQ/kuI3mraPluLjnmbvorrAM6LSn54mp5o+Q5Y+WDOi0p+eJqeiuouiIsQzotKfnianmi4nkuIsVCQzotKfniankuqTmjqUM6LSn54mp5Ye65rivDOi/m+a4r+WIsOi+vgzotKfnianovazlh7oM55CG6LSn5a6M5q+VD+S4jeato+W4uOeZu+iusAzotKfnianmj5Dlj5YM6LSn54mp6K6i6IixDOi0p+eJqeaLieS4ixQrAwlnZ2dnZ2dnZ2dkZAIFDw8WAh8ABRLlrprliLbot5/ouKrpgq7ku7ZkZAIIDxAPFgIfAAUS5p+l55yL5rS+6YCB5L+h5oGvZGRkZAIKDxYCHwAFGzxkaXYgY2xhc3M9J2NvbnRyb2wnPjwvZGl2PmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgsFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkMAUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQxBR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDIFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkMwUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQ0BR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDUFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkNgUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQ3BR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDgFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkOAUNY2hrUXVlcnlUYWxseQhK6a17wTpV7k/51aAYal7o6LLZ9xXjLZjd7tIvW2wz',
             '__EVENTVALIDATION' => '/wEWEwLp8+61BQK4kq2dCgLRxoa2CAL2ktWKCwKXnpSaAQKfwsyDBAL0ttfVDAL0ttPVDAL0tt/VDAL0ttvVDAL0tsfVDAL0tsPVDAL0ts/VDAL0tsvVDAL0tvfVDALZl92kCAKj4sWqDQLThsqfCgLn6ImSCju1tcDqHsnQiZjLcE2nKe/xCWTmE5SHwEoNj3K51oPx',
             'txtStatusCode%24__txtSelect' => '%D1%A1%D4%F1%B8%FA%D7%D9%D7%B4%CC%AC',
-            'btnQry' => '%B2%E9%D1%AF',
             'rowid' => 1,
+            'clientOffset' => '+08:00',
+            'clientOffsetMinutes' => -480,
             'txtstrAwbPfx0' => $this->mawb3,
-            'txtstrbum0' => $this->mawb8);
+            'txtstrbum0' => $this->mawb8,
+            'txtAwbs' => $this->mawb3."-".$this->mawb8,
+            'rowid' => 1,
+            'btnQry' => '%B2%E9%D1%AF',
+            );
         $query_data = http_build_query($query_data);
         $http_data = array(
             'http'=>array(
@@ -154,7 +169,7 @@ class TrackController extends Controller
                 'content' => $query_data)
             );
         $http_context = stream_context_create($http_data);
-        $search_res = file_get_contents("http://cargo2.ce-air.com/MU/Service/getawbinfo.aspx?strCul=zh-CN", false, $http_context);
+        $search_res = file_get_contents("http://cargo2.ceair.com/mu/Service/getawbinfo.aspx?strCul=zh-CN", false, $http_context);
 
         preg_match("/<table align=\"center\" border=\"0\" width=\"600\" id=\"result\">.*<\/table>/s", $search_res, $mawbhead);
         $mawbinfo = str_replace("display:block", "display: none", $mawbhead[0]);
@@ -250,14 +265,49 @@ class TrackController extends Controller
     private function flightAsiana()
     {
         // 韩亚航空运单查询
-        $url = "https://www.asianacargo.com/tracking/newAirWaybill.do?globalLang=Cn&mawb=988-".$this->mawb8;
+        $url = "https://www.asianacargo.com/tracking/viewTraceAirWaybill.do?lang=zh&mawb=988-".$this->mawb8;
         Header("Location: $url");
     }
 
     private function flightSilkwayWest()
     {
         // 长荣货运查询官网
-        $url = "http://www.silkwaywest.com/test.php?awb=".$this->mawb8."&pfx=".$this->mawb3;
+        $url = "http://www.silkwaywest.com/pages/awb.php?awb=".$this->mawb3.$this->mawb8."&pfx=";
+        Header("Location: $url");
+    }
+
+    private function flightNCA()
+    {
+        // 日货航查询官网
+        $url = "https://www.nca.aero/icoportal/jsp/operations/shipment/AWBTracking.jsf?prefix1=".$this->mawb3."&doc1=".$this->mawb8;
+        Header("Location: $url");
+    }
+
+    private function flightUW()
+    {
+        // 友和道通查询  **
+        $url = "http://www.uni-top.com:8081/CargoTracking/queryWaybill.aspx?mawb=".$this->mawb8;
+        Header("Location: $url");
+    }
+
+    private function flightLH()
+    {
+        // lufthansa汉莎查询
+        $url = "https://lufthansa-cargo.com/eservices/etracking/awb-details?p_p_id=etrkawbdetails_WAR_etrkportlet&p_p_lifecycle=0&_etrkawbdetails_WAR_etrkportlet_fromPortlet=OverviewAwbStatus&_etrkawbdetails_WAR_etrkportlet_selectedAwb=".$this->mawb3."-".$this->mawb8."&_etrkawbdetails_WAR_etrkportlet_searchFor=AWB#filter=NAVIGATION";
+        Header("Location: $url");
+    }
+
+    private function flightEK()
+    {
+        // lufthansa汉莎查询
+        $url = "https://skychain.emirates.com/skychain/app?PID=WEB01-10&doc_typ=AWB&awb_pre=".$this->mawb3."&awb_no=".$this->mawb8."&job_no=";
+        Header("Location: $url");
+    }
+
+    private function flightAI()
+    {
+        // 印航查询 **
+        $url = "http://www.airindia.in/cargo-tracking.htm?MAWB=".$this->mawb3."-".$this->mawb8;
         Header("Location: $url");
     }
 
