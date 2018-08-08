@@ -52,9 +52,9 @@ class TrackController extends Controller
         # 查运抵及放行（调用货站查询系统-pactl，东航物流） // 699
         if($this->invalidMawb($mawb)){
             echo "<br>";
-        }elseif(in_array($this->mawb3, ['020','043','065','071','160','176','232','235','406','695','738','999'])){
+        }elseif(in_array($this->mawb3, ['020','043','065','071','160','176','232','235','406','607','695','738','999'])){
             $this->arrivalPactl();
-        }elseif(in_array($this->mawb3, ['016','018','098','112','172','205','217','297','501','537','618','672','756','784','843','933','988'])){
+        }elseif(in_array($this->mawb3, ['016','018','098','112','126','172','205','217','297','501','537','618','672','756','784','843','933','988'])){
             $this->arrivalCeAir();
         }else{
             echo "暂不支持查询 ".$this->mawb3." 运抵信息"."<br><br>";
@@ -113,6 +113,10 @@ class TrackController extends Controller
             $this->flightEK();
         }elseif(in_array($this->mawb3, ['098'])){
             $this->flightAI();
+        }elseif(in_array($this->mawb3, ['607'])){
+            $this->flightEY();
+        }elseif(in_array($this->mawb3, ['126'])){
+            $this->flightGA();
         }else{
             echo "暂不支持直接查询 ".$this->mawb3." 运单"."<br><br>";
             echo "<a href=\"/track/airline\">航空公司官网货运追踪网址列表</a>";
@@ -299,7 +303,7 @@ class TrackController extends Controller
 
     private function flightEK()
     {
-        // lufthansa汉莎查询
+        // 阿联酋航空查询
         $url = "https://skychain.emirates.com/skychain/app?PID=WEB01-10&doc_typ=AWB&awb_pre=".$this->mawb3."&awb_no=".$this->mawb8."&job_no=";
         Header("Location: $url");
     }
@@ -308,6 +312,20 @@ class TrackController extends Controller
     {
         // 印航查询 **
         $url = "http://www.airindia.in/cargo-tracking.htm?MAWB=".$this->mawb3."-".$this->mawb8;
+        Header("Location: $url");
+    }
+
+    private function flightEY()
+    {
+        // Etihad查询
+        $url = "https://www.etihadcargo.com/content/eag/egcmc/etihadcargo/en-ae/track-and-trace.html?awb=".$this->mawb3.$this->mawb8;
+        Header("Location: $url");
+    }
+
+    private function flightGA()
+    {
+        // 印尼鹰航查询
+        $url = "https://icms.garuda-indonesia.com/HtmlFiles/AWBTracking/AWBTracking.html?BasedOn=0&AWBNo=".$this->mawb8."&CarrierCode=".$this->mawb3;
         Header("Location: $url");
     }
 
