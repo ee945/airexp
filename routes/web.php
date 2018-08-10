@@ -91,13 +91,13 @@ Route::get('report/forward', 'ReportController@forward');
 Route::any('address', function(){return redirect(route('address_list'));});
 Route::any('address/list', 'AddrController@lists')->name('address_list');
 // 查看或修改地址
-Route::get('address/view/{code}', 'AddrController@show')->name('address_view');
-Route::post('address/view/{code}', 'AddrController@update');
+Route::get('address/view/{cata}/{code}', 'AddrController@show')->name('address_view');
+Route::post('address/view/{cata}/{code}', 'AddrController@update');
 // 添加地址（添加/提交）
 Route::get('address/add', 'AddrController@add')->name('address_add');
 Route::post('address/add', 'AddrController@create');
 // 删除地址
-Route::get('address/del/{code}', 'AddrController@delete')->name('address_del');
+Route::get('address/del/{cata}/{code}', 'AddrController@delete')->name('address_del');
 
 // 目的港列表
 Route::any('port', function(){return redirect(route('port_list'));});

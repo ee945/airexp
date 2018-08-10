@@ -18,7 +18,7 @@
         @endif
         @if(isset($addno))
           <div class="alert alert-success" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
-            <strong>输入成功: &nbsp;<a href="{{ route('address_view',['code'=>$addno])}}">{{ $addno }}</a></strong>
+            <strong>输入成功: &nbsp;<a href="{{ route('address_view',['cata'=>$cata,'code'=>$addno])}}">{{ $addno }}</a></strong>
           </div>
         @endif
         <table class="table table-condensed table-responsive" style="width:90%;margin:2px auto;">
@@ -98,13 +98,13 @@
           <tbody>
             @foreach($addrs as $addr)
             <tr>
-              <td><a href="{{ route('address_view',['code'=>$addr->code])}}">{{ $addr->code }}</a></td>
+              <td><a href="{{ route('address_view',['cata'=>$addr->cata,'code'=>$addr->code])}}">{{ $addr->code }}</a></td>
               <td>{{ $addr->name }}</td>
               <td>{{ $addr->cata }}</td>
               <td>{{ explode("\n", $addr->addr)[0] }}</td>
               <td>{{ explode("\n", $addr->remark)[0] }}</td>
               <td class="text-center">
-                <a href="{{ route('address_del',['code'=>$addr->code])}}" onclick="if(confirm('确定删除&nbsp;“{{$addr->code}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
+                <a href="{{ route('address_del',['cata'=>$addr->cata,'code'=>$addr->code])}}" onclick="if(confirm('确定删除&nbsp;“{{$addr->code}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
             @endforeach
