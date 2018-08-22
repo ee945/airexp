@@ -18,7 +18,7 @@
         @endif
         @if(isset($addno))
           <div class="alert alert-success" style="width:90%;padding:8px 15px;margin:0 auto 10px auto" role="alert">
-            <strong>输入成功: &nbsp;<a href="{{ route('client_view',['code'=>$addno])}}">{{ $addno }}</a></strong>
+            <strong>输入成功: &nbsp;<a href="{{ route('client_view',['cata'=>$cata,'code'=>$addno])}}">{{ $addno }}</a></strong>
           </div>
         @endif
         <table class="table table-condensed table-responsive" style="width:90%;margin:2px auto;">
@@ -81,11 +81,11 @@
           <tbody>
             @foreach($clients as $client)
             <tr>
-              <td><a href="{{ route('client_view',['code'=>$client->code])}}">{{ $client->code }}</a></td>
+              <td><a href="{{ route('client_view',['cata'=>$client->cata,'code'=>$client->code])}}">{{ $client->code }}</a></td>
               <td>{{ $client->name }}</td>
               <td>{{ $client->cata }}</td>
               <td class="text-center">
-                <a href="{{ route('client_del',['code'=>$client->code])}}" onclick="if(confirm('确定删除&nbsp;“{{$client->code}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
+                <a href="{{ route('client_del',['cata'=>$client->cata,'code'=>$client->code])}}" onclick="if(confirm('确定删除&nbsp;“{{$client->cata}}&nbsp;:&nbsp;{{$client->code}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
               <td></td>
             </tr>

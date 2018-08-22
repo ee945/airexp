@@ -29,7 +29,7 @@
             @elseif($title=="修改客户")
             <td style="width:45%;">{!! Form::text('code',isset($client->code)?$client->code:null,['size'=>'16','class' => 'form-control','readonly'=>'readonly']) !!}</td>
             @endif
-            <td style="width:35%;"></td>
+            <td style="width:35%;">{!! Form::hidden('id',isset($client->id)?$client->id:null,['class' => 'form-control','readonly'=>'readonly']) !!}</td>
           </tr>
           <tr>
             <td>{!! Form::label('name', '名称: ') !!}</td>

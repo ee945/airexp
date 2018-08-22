@@ -104,7 +104,7 @@
               <td>{{ explode("\n", $addr->addr)[0] }}</td>
               <td>{{ explode("\n", $addr->remark)[0] }}</td>
               <td class="text-center">
-                <a href="{{ route('address_del',['cata'=>$addr->cata,'code'=>$addr->code])}}" onclick="if(confirm('确定删除&nbsp;“{{$addr->code}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
+                <a href="{{ route('address_del',['cata'=>$addr->cata,'code'=>$addr->code])}}" onclick="if(confirm('确定删除&nbsp;“{{$addr->cata}}&nbsp;:&nbsp;{{$addr->code}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
             @endforeach

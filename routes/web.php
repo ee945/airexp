@@ -115,13 +115,13 @@ Route::get('port/del/{code}', 'PortController@delete')->name('port_del');
 Route::any('client', function(){return redirect(route('client_list'));});
 Route::any('client/list', 'ClientController@lists')->name('client_list');
 // 查看或修改客户
-Route::get('client/view/{code}', 'ClientController@show')->name('client_view');
-Route::post('client/view/{code}', 'ClientController@update');
+Route::get('client/view/{cata}/{code}', 'ClientController@show')->name('client_view');
+Route::post('client/view/{cata}/{code}', 'ClientController@update');
 // 添加客户（添加/提交）
 Route::get('client/add', 'ClientController@add')->name('client_add');
 Route::post('client/add', 'ClientController@create');
 // 删除客户
-Route::get('client/del/{code}', 'ClientController@delete')->name('client_del');;
+Route::get('client/del/{cata}/{code}', 'ClientController@delete')->name('client_del');;
 
 // 销售列表
 Route::any('seller', function(){return redirect(route('seller_list'));});
