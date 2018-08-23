@@ -112,25 +112,23 @@
               <th class="text-center" width=7%>托运人</th>
               <th class="text-center" width=9%>生产单位</th>
               <th class="text-center" width=6%>承运人</th>
-              <th class="text-center" width=10%>货物信息</th>
-              <th class="text-center" width=10%>交货要求</th>
-              <th class="text-center" width=10%>备注</th>
+              <th class="text-center" width=15%>货物信息</th>
+              <th class="text-center" width=15%>备注</th>
               <th class="text-center" width=10%></th>
             </tr>
           </thead>
           <tbody>
             @foreach($jincangs as $jincang)
             <tr {{$jincang->status==1?"style=background-color:#aaa;color:#fff":""}}>
-              <td><a href="{{ route('jincang_view',['jcno'=>$jincang->jcno])}}">{{ $jincang->jcno }}</a></td>
+              <td class="hawb"><a href="{{ route('jincang_view',['jcno'=>$jincang->jcno])}}">{{ $jincang->jcno }}</a></td>
               <td>{{ $jincang->dest }}</td>
-              <td>{{ $jincang->regdate }}</td>
-              <td>{{ $jincang->fltdate }}</td>
+              <td class="text-center">{{ $jincang->regdate }}</td>
+              <td class="text-center jincang">{{ $jincang->fltdate == "0000-00-00"?"未定":$jincang->fltdate }}</td>
               <td>{{ $jincang->forward }}</td>
               <td>{{ $jincang->client }}</td>
               <td>{{ $jincang->factory }}</td>
               <td>{{ $jincang->carrier }}</td>
               <td>{{ $jincang->cargodata }}</td>
-              <td>{{ $jincang->delivery }}</td>
               <td>{{ $jincang->remark }}</td>
               <td class="text-center">
                 <a href="{{ route('jincang_status',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('{{$jincang->status==1?"重新进仓":"确定出仓"}}&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs {{$jincang->status==1?"btn-success":"btn-warning"}}">{{$jincang->status==1?"已出":"出仓"}}</a>
@@ -146,6 +144,7 @@
       </div>
     </div>
   </div> <!-- /container -->
+  <script src="/js/jquery.min.js"></script>
   <script>
     function reset_search(){
       document.getElementById('search_jcno').value=null;
@@ -162,5 +161,20 @@
       document.getElementById('search_regstart').value=null;
       document.getElementById('search_regend').value=null;
     }
+
+    //点击预配日期自动更新为实际航班日期
+    $(".jincang").click(function(){
+      var hawb = $(this).siblings(".hawb").text();
+      var predate = $(this).text();
+      $.get('{{url('get/fltdate')}}/'+hawb,function(json){
+        if(json.fltdate!=null){
+          if(json.fltdate!=predate){
+            if(confirm("实际出口日期："+json.fltdate+"，是否更新？")){
+              $(location).attr('href', '{{url('update/fltdate')}}/'+hawb+'/'+json.fltdate)
+            }
+          }
+        }
+      });
+    });
   </script>
 @stop

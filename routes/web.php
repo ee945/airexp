@@ -29,6 +29,10 @@ Route::get('get/hnotify/{notifycode}', 'AddrController@getHNotify');
 Route::get('get/mconsignee/{oversea}', 'AddrController@getMConsignee');
 Route::get('get/contact/{contactcode}', 'ContactController@getContact');
 
+// 通过Jquery更新进仓单实际出口日期
+Route::get('get/fltdate/{hawb}', 'HawbController@getFltdate');
+Route::get('update/fltdate/{hawb}/{fltdate}', 'JincangController@updateFltdate');
+
 
 // 进仓列表
 Route::any('jincang', function(){return redirect(route('jincang_list'));});

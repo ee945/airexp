@@ -16,6 +16,13 @@ class HawbController extends Controller
         $this->middleware('auth');
     }
 
+    public function getFltdate($hawb)
+    {
+        # code...
+        $fltdate = Hawb::where('hawb',$hawb)->first();
+        return $fltdate;
+    }
+
     public function lists(Request $request)
     {
 		## 显示分单列表

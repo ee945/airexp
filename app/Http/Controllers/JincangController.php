@@ -141,4 +141,12 @@ class JincangController extends Controller
         }
         return redirect(route('jincang_list',['status'=>$status,'jcno'=>$jcno]));
     }
+
+    public function updateFltdate($hawb,$fltdate)
+    {
+        ## 更新进仓单实际出口日期 get
+        $query = Jincang::where('jcno',$hawb)->update(['fltdate'=>$fltdate]);
+        return redirect(route('jincang_list'));
+
+    }
 }
