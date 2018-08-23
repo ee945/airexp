@@ -112,9 +112,9 @@
               <th class="text-center" width=7%>托运人</th>
               <th class="text-center" width=9%>生产单位</th>
               <th class="text-center" width=6%>承运人</th>
-              <th class="text-center" width=15%>货物信息</th>
-              <th class="text-center" width=15%>备注</th>
-              <th class="text-center" width=10%></th>
+              <th class="text-center" width=13%>货物信息</th>
+              <th class="text-center" width=13%>备注</th>
+              <th class="text-center" width=13%></th>
             </tr>
           </thead>
           <tbody>
@@ -132,6 +132,7 @@
               <td>{{ $jincang->remark }}</td>
               <td class="text-center">
                 <a href="{{ route('jincang_status',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('{{$jincang->status==1?"重新进仓":"确定出仓"}}&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs {{$jincang->status==1?"btn-success":"btn-warning"}}">{{$jincang->status==1?"已出":"出仓"}}</a>
+                <a href="{{ route('hawb_view',['hawb'=>$jincang->jcno])}}" type="button" class="btn btn-xs btn-primary">分单</a>
                 <a href="{{ route('jincang_del',['jcno'=>$jincang->jcno])}}" onclick="if(confirm('确定删除&nbsp;“{{$jincang->jcno}}”&nbsp;?')==false)return false;" type="button" class="btn btn-xs btn-danger">删除</a>
               </td>
             </tr>
