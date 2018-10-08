@@ -52,7 +52,7 @@ class TrackController extends Controller
         # 查运抵及放行（调用货站查询系统-pactl，东航物流） // 699
         if($this->invalidMawb($mawb)){
             echo "<br>";
-        }elseif(in_array($this->mawb3, ['020','043','065','071','160','176','232','235','406','607','695','738','999'])){
+        }elseif(in_array($this->mawb3, ['020','023','043','065','071','160','176','232','235','406','580','607','695','738','999'])){
             $this->arrivalPactl();
         }elseif(in_array($this->mawb3, ['016','018','098','112','126','172','205','217','297','501','537','618','672','756','784','843','933','988'])){
             $this->arrivalCeAir();
@@ -85,7 +85,7 @@ class TrackController extends Controller
             echo "<br>";
         }elseif(in_array($this->mawb3, ['999'])){
             $this->flightAirChina();
-        }elseif(in_array($this->mawb3, ['112','784','172','217','205','756','018','537','618','843'])){
+        }elseif(in_array($this->mawb3, ['112','784','172','217','756','018','537','618','843'])){
             $this->flightCeAir();
         }elseif(in_array($this->mawb3, ['160','043'])){
             $this->flightCathayCacific();
@@ -117,6 +117,12 @@ class TrackController extends Controller
             $this->flightEY();
         }elseif(in_array($this->mawb3, ['126'])){
             $this->flightGA();
+        }elseif(in_array($this->mawb3, ['580'])){
+            $this->flightAirBridge();
+        }elseif(in_array($this->mawb3, ['205'])){
+            $this->flightANA();
+        }elseif(in_array($this->mawb3, ['023'])){
+            $this->flightFedex();
         }else{
             echo "暂不支持直接查询 ".$this->mawb3." 运单"."<br><br>";
             echo "<a href=\"/track/airline\">航空公司官网货运追踪网址列表</a>";
@@ -153,9 +159,8 @@ class TrackController extends Controller
     {
         // 东航货运业务系统
         $query_data = array(
-            '__VIEWSTATE' => '/wEPDwULLTEyODYxNTg3NzIPZBYCZg9kFgoCAg8PFgIeBFRleHQFBuafpeivomRkAgQPZBYCZg9kFgRmDw8WBh4JRm9yZUNvbG9yCk4fAAUS6YCJ5oup6Lef6Liq54q25oCBHgRfIVNCAgRkZAIBDxAPZBYCHgdvbmNsaWNrBSRDaGVja0JveExpc3RfQ2xpY2soJ3R4dFN0YXR1c0NvZGUnKTsQFQkM6LSn54mp5Lqk5o6lDOi0p+eJqeWHuua4rwzov5vmuK/liLDovr4M6LSn54mp6L2s5Ye6DOeQhui0p+WujOavlQ/kuI3mraPluLjnmbvorrAM6LSn54mp5o+Q5Y+WDOi0p+eJqeiuouiIsQzotKfnianmi4nkuIsVCQzotKfniankuqTmjqUM6LSn54mp5Ye65rivDOi/m+a4r+WIsOi+vgzotKfnianovazlh7oM55CG6LSn5a6M5q+VD+S4jeato+W4uOeZu+iusAzotKfnianmj5Dlj5YM6LSn54mp6K6i6IixDOi0p+eJqeaLieS4ixQrAwlnZ2dnZ2dnZ2dkZAIFDw8WAh8ABRLlrprliLbot5/ouKrpgq7ku7ZkZAIIDxAPFgIfAAUS5p+l55yL5rS+6YCB5L+h5oGvZGRkZAIKDxYCHwAFGzxkaXYgY2xhc3M9J2NvbnRyb2wnPjwvZGl2PmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgsFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkMAUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQxBR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDIFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkMwUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQ0BR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDUFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkNgUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQ3BR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDgFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkOAUNY2hrUXVlcnlUYWxsebGL0BpNEgTfybzNUQ3fJABdwInbQWBPF9k9pEX0TcbU',
-            '__EVENTVALIDATION' => '/wEWEwKShpvlDwK4kq2dCgLRxoa2CAL2ktWKCwKXnpSaAQKfwsyDBAL0ttfVDAL0ttPVDAL0tt/VDAL0ttvVDAL0tsfVDAL0tsPVDAL0ts/VDAL0tsvVDAL0tvfVDALZl92kCAKj4sWqDQLThsqfCgLn6ImSCrbyHme6qqlZZfAzm1doeHZ+xsDHnNYGp77ZNcvFWSI5',
-            'txtStatusCode%24__txtSelect' => '%D1%A1%D4%F1%B8%FA%D7%D9%D7%B4%CC%AC',
+            '__VIEWSTATE' => '/wEPDwULLTEyODYxNTg3NzIPZBYCZg9kFgoCAg8PFgIeBFRleHQFBuafpeivomRkAgQPZBYCZg9kFgRmDw8WBh4JRm9yZUNvbG9yCk4fAAUS6YCJ5oup6Lef6Liq54q25oCBHgRfIVNCAgRkZAIBDxAPZBYCHgdvbmNsaWNrBSRDaGVja0JveExpc3RfQ2xpY2soJ3R4dFN0YXR1c0NvZGUnKTsQFQkM6LSn54mp5Lqk5o6lDOi0p+eJqeWHuua4rwzov5vmuK/liLDovr4M6LSn54mp6L2s5Ye6DOeQhui0p+WujOavlQ/kuI3mraPluLjnmbvorrAM6LSn54mp5o+Q5Y+WDOi0p+eJqeiuouiIsQzotKfnianmi4nkuIsVCQzotKfniankuqTmjqUM6LSn54mp5Ye65rivDOi/m+a4r+WIsOi+vgzotKfnianovazlh7oM55CG6LSn5a6M5q+VD+S4jeato+W4uOeZu+iusAzotKfnianmj5Dlj5YM6LSn54mp6K6i6IixDOi0p+eJqeaLieS4ixQrAwlnZ2dnZ2dnZ2dkZAIFDw8WAh8ABRLlrprliLbot5/ouKrpgq7ku7ZkZAIIDxAPFgIfAAUS5p+l55yL5rS+6YCB5L+h5oGvZGRkZAIKDxYCHwAFGzxkaXYgY2xhc3M9J2NvbnRyb2wnPjwvZGl2PmQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgsFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkMAUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQxBR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDIFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkMwUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQ0BR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDUFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkNgUedHh0U3RhdHVzQ29kZSRfZ3JpZENoZWNrTGlzdCQ3BR50eHRTdGF0dXNDb2RlJF9ncmlkQ2hlY2tMaXN0JDgFHnR4dFN0YXR1c0NvZGUkX2dyaWRDaGVja0xpc3QkOAUNY2hrUXVlcnlUYWxseQhK6a17wTpV7k/51aAYal7o6LLZ9xXjLZjd7tIvW2wz',
+            '__EVENTVALIDATION' => '/wEWEwLp8+61BQK4kq2dCgLRxoa2CAL2ktWKCwKXnpSaAQKfwsyDBAL0ttfVDAL0ttPVDAL0tt/VDAL0ttvVDAL0tsfVDAL0tsPVDAL0ts/VDAL0tsvVDAL0tvfVDALZl92kCAKj4sWqDQLRjYzhCgLn6ImSCgIyfgVy9DFo2YSOpDClMzQYUhQwt/A4v+patz+lGuia',
             'rowid' => 1,
             'clientOffset' => '+08:00',
             'clientOffsetMinutes' => -480,
@@ -326,6 +331,41 @@ class TrackController extends Controller
     {
         // 印尼鹰航查询
         $url = "https://icms.garuda-indonesia.com/HtmlFiles/AWBTracking/AWBTracking.html?BasedOn=0&AWBNo=".$this->mawb8."&CarrierCode=".$this->mawb3;
+        Header("Location: $url");
+    }
+
+    private function flightAirBridge()
+    {
+        // 俄罗斯大桥货运查询官网
+        $query_data = array('prefix' => '580','trackid' => $this->mawb8);
+        $query_data = http_build_query($query_data);
+        $http_data = array(
+            'http'=>array(
+                'method'=>"POST",
+                'header'=>"Content-type: application/x-www-form-urlencoded\r\n"."Content-length:".strlen($query_data)."\r\n",
+                'content' => $query_data)
+            );
+            $http_context = stream_context_create($http_data);
+            $search_res = file_get_contents("https://www.airbridgecargo.com/en/tracking/", false, $http_context);
+
+        preg_match("/<div id=\"trackingResult\">.*<!-- container -->/sU", $search_res, $mawbstatus);
+
+        echo "<link href=\"https://www.airbridgecargo.com/css/abc3r2Xw2.css\" rel=\"stylesheet\">";
+        echo "<title>AirBridge货运查询</title>";
+        echo $mawbstatus[0];
+    }
+
+    private function flightANA()
+    {
+        // 全日空查询官网
+        $url = "https://cargo.ana.co.jp/anaicoportal/portal/trackshipments?trkTxnValue=".$this->mawb3."-".$this->mawb8;
+        Header("Location: $url");
+    }
+
+    private function flightFedex()
+    {
+        // Fedex查询官网
+        $url = "https://www.fedex.com/apps/fedextrack/index.html?tracknumbers=".$this->mawb3.$this->mawb8."&cntry_code=cn";
         Header("Location: $url");
     }
 
